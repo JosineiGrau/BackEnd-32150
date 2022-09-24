@@ -1,6 +1,6 @@
 // const Container = require('./container');
 
-// const product = new Container('src/desafio2/productos.txt');
+// const product = new Container('src/desafio3/productos.txt');
 
 // const addProduct = async () => {
 // 	try {
