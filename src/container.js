@@ -29,6 +29,7 @@ class Container {
 						this.nameFile,
 						JSON.stringify(data, null, 2)
 					);
+					return newProduct;
 				} else {
 					const newProduct = {
 						id: 1,
@@ -38,6 +39,7 @@ class Container {
 						this.nameFile,
 						JSON.stringify([newProduct], null, 2)
 					);
+					return newProduct;
 				}
 			} else {
 				const newProduct = {
@@ -48,6 +50,7 @@ class Container {
 					this.nameFile,
 					JSON.stringify([newProduct], null, 2)
 				);
+				return newProduct;
 			}
 		} catch (error) {
 			console.log(error);
@@ -59,10 +62,7 @@ class Container {
 			const contenido = await fs.promises.readFile(this.nameFile, 'utf-8');
 			if (contenido) {
 				const data = JSON.parse(contenido);
-				return (
-					data.find((item) => item.id === id) ||
-					new Error('No se encontró el id que busca')
-				);
+				return data.find((item) => item.id === id) || null;
 			} else {
 				throw new Error('No se encontró ningún id para mostrar');
 			}
@@ -78,7 +78,7 @@ class Container {
 				const data = JSON.parse(contenido);
 				return data;
 			} else {
-				throw new Error('No se encontró ningún producto mostrar');
+				throw new Error('No se encontró ningún producto a mostrar');
 			}
 		} catch (error) {
 			console.log(error);
@@ -95,6 +95,7 @@ class Container {
 					this.nameFile,
 					JSON.stringify(newProductList, null, 2)
 				);
+				return data.find((item) => item.id === id) || null;
 			} else {
 				throw new Error('No se encontró ningún producto para borrar');
 			}
@@ -110,6 +111,27 @@ class Container {
 			console.log(error);
 		}
 	}
+
+	async updateProduct(id, body) {
+		try {
+			const contenido = await fs.promises.readFile(this.nameFile, 'utf-8');
+			if (contenido) {
+				const data = JSON.parse(contenido);
+				const newArray = data.map((item) =>
+					item.id === id ? { ...item, ...body } : item
+				);
+				await fs.promises.writeFile(
+					this.nameFile,
+					JSON.stringify(newArray, null, 2)
+				);
+				return newArray.find((item) => item.id === id) || null;
+			} else {
+				throw new Error('No se encontró ningún producto para actualizar');
+			}
+		} catch (err) {
+			console.log(err);
+		}
+	}
 }
 
-module.exports = Container;
+module.exports.Container = Container;
