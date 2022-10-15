@@ -2,7 +2,7 @@
 	"name": "backend",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.js",
+	"main": "server.js",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/JosineiGrau/BackEnd-32150.git"
@@ -12,7 +12,7 @@
 	},
 	"homepage": "https://github.com/JosineiGrau/BackEnd-32150#readme",
 	"scripts": {
-		"dev": "nodemon src/index.js",
+		"dev": "nodemon src/server.js",
 		"format": "npx prettier --write .",
 		"lint": "eslint .",
 		"lint-fix": "eslint --fix . --ext .js"
@@ -21,6 +21,7 @@
 	"author": "Josinei",
 	"license": "ISC",
 	"dependencies": {
+		"ejs": "3.1.8",
 		"express": "4.18.1",
 		"nodemon": "2.0.20"
 	},

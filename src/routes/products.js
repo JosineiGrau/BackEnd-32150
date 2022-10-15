@@ -1,9 +1,8 @@
 const { Container } = require('../container');
-const express = require('express');
+const { Router } = require('express');
+const productsRoute = Router();
 
 const productsList = new Container('db.txt');
-
-const productsRoute = express.Router();
 
 // GET
 productsRoute.get('/', async (req, res) => {

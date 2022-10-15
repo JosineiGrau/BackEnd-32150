@@ -1,0 +1,28 @@
+<html lang="en">
+	<head>
+		<%- include("partials/head.ejs", {tituloWeb: "getProducts"}) %>
+	</head>
+	<body>
+		<header><%- include("partials/header.ejs") %></header>
+		<main>
+			<section class="main-form">
+				<form action="/postProducts" method="post" class="form-post">
+					<div class="group-input">
+						<label for="title">Title:</label>
+						<input type="text" id="title" name="title" />
+					</div>
+					<div class="group-input">
+						<label for="price">Price:</label>
+						<input type="text" id="price" name="price" />
+					</div>
+					<div class="group-input">
+						<label for="thumbnail">Thumbnail:</label>
+						<input type="text" id="thumbnail" name="thumbnail" />
+					</div>
+					<button>Crear Producto</button>
+				</form>
+			</section>
+		</main>
+	</body>
+	<footer><%- include("partials/footer.ejs") %></footer>
+</html>

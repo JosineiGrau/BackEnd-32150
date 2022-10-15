@@ -1,0 +1,29 @@
+<html lang="en">
+	<head>
+		<%- include("partials/head.ejs", {tituloWeb: "api"}) %>
+	</head>
+	<body>
+		<header><%- include("partials/header.ejs") %></header>
+		<section class="api-search">
+			<form>
+				<input
+					id="input"
+					type="text"
+					value="http://localhost:8080/api/products"
+				/>
+				<button>Buscar</button>
+			</form>
+			<div class="api-result" id="api-result">
+				<h1>pendiente</h1>
+				<pre>
+					<code>
+						<!-- <% allProducts.forEach(data => { %>
+							<span><%= data.id %></span>
+						<% }) %> -->
+					</code>
+				</pre>
+			</div>
+		</section>
+	</body>
+	<footer><%- include("partials/footer.ejs") %></footer>
+</html>
