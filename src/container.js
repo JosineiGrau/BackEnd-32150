@@ -29,7 +29,7 @@ class Container {
 						this.nameFile,
 						JSON.stringify(data, null, 2)
 					);
-					return newProduct;
+					return data;
 				} else {
 					const newProduct = {
 						id: 1,

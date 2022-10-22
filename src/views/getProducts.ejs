@@ -6,10 +6,9 @@
 		<header><%- include("partials/header.ejs") %></header>
 		<main>
 			<section class="main-table">
-				<%if (allProducts.length === 0) { %>
-					<h1>No hay productos</h1>
-				<% } %>
-				<%if (allProducts.length > 0) { %>
+				<% if(allProducts === undefined){ %>
+					<h1>NO HAY PRODUCTOS</h1>
+				<% } else{ %>  
 					<table>
 						<thead>
 							<tr>
@@ -19,20 +18,20 @@
 								<th>thumbnail</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id="tBody">
 							<% allProducts.forEach(data => { %>
-							<tr>
-								<th><%= data.id%></th>
-								<td><%= data.title%></td>
-								<td>$<%= data.price%></td>
-								<td>
-									<img src=<%= data.thumbnail%> alt="hola" width="100px"/>
-								</td>
-							</tr>
+								<tr>
+									<th><%= data.id%></th>
+									<td><%= data.title%></td>
+									<td>$<%= data.price%></td>
+									<td>
+										<img src=<%= data.thumbnail%> alt="hola" width="100px"/>
+									</td>
+								</tr>
 							<% }) %>
 						</tbody>
 					</table>
-				<% } %>	
+				<% } %>
 			</section>
 		</main>
 	</body>
