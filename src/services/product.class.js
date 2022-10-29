@@ -1,6 +1,7 @@
-const fs = require('fs');
+import fs from 'fs';
+import moment from 'moment';
 
-class Container {
+export class Products {
 	constructor(nameFile) {
 		this.nameFile = nameFile;
 	}
@@ -15,28 +16,30 @@ class Container {
 
 	async save(product) {
 		try {
-			if (fs.existsSync(this.nameFile)) {
-				const contenido = await fs.promises.readFile(this.nameFile, 'utf-8');
+			if (fs.existsSync(`./src/db/${this.nameFile}`)) {
+				const contenido = await fs.promises.readFile(`./src/db/${this.nameFile}`, 'utf-8');
 				if (contenido) {
 					const data = JSON.parse(contenido);
 					const id = this.addId(data);
 					const newProduct = {
 						id,
+						timestamp: moment().format('DD/MM/AAAA HH:mm:ss A'),
 						...product,
 					};
 					data.push(newProduct);
 					await fs.promises.writeFile(
-						this.nameFile,
+						`./src/db/${this.nameFile}`,
 						JSON.stringify(data, null, 2)
 					);
 					return data;
 				} else {
 					const newProduct = {
 						id: 1,
+						timestamp: moment().format('DD/MM/AAAA HH:mm:ss A'),
 						...product,
 					};
 					await fs.promises.writeFile(
-						this.nameFile,
+						`./src/db/${this.nameFile}`,
 						JSON.stringify([newProduct], null, 2)
 					);
 					return newProduct;
@@ -44,10 +47,11 @@ class Container {
 			} else {
 				const newProduct = {
 					id: 1,
+					timestamp: moment().format('DD/MM/AAAA HH:mm:ss A'),
 					...product,
 				};
 				await fs.promises.writeFile(
-					this.nameFile,
+					`./src/db/${this.nameFile}`,
 					JSON.stringify([newProduct], null, 2)
 				);
 				return newProduct;
@@ -59,7 +63,7 @@ class Container {
 
 	async getById(id) {
 		try {
-			const contenido = await fs.promises.readFile(this.nameFile, 'utf-8');
+			const contenido = await fs.promises.readFile(`./src/db/${this.nameFile}`, 'utf-8');
 			if (contenido) {
 				const data = JSON.parse(contenido);
 				return data.find((item) => item.id === id) || null;
@@ -73,7 +77,7 @@ class Container {
 
 	async getAll() {
 		try {
-			const contenido = await fs.promises.readFile(this.nameFile, 'utf-8');
+			const contenido = await fs.promises.readFile(`./src/db/${this.nameFile}`, 'utf-8');
 			if (contenido) {
 				const data = JSON.parse(contenido);
 				return data;
@@ -87,12 +91,12 @@ class Container {
 
 	async deleteById(id) {
 		try {
-			const contenido = await fs.promises.readFile(this.nameFile, 'utf-8');
+			const contenido = await fs.promises.readFile(`./src/db/${this.nameFile}`, 'utf-8');
 			if (contenido) {
 				const data = JSON.parse(contenido);
 				const newProductList = data.filter((item) => item.id !== id);
 				await fs.promises.writeFile(
-					this.nameFile,
+					`./src/db/${this.nameFile}`,
 					JSON.stringify(newProductList, null, 2)
 				);
 				return data.find((item) => item.id === id) || null;
@@ -104,27 +108,40 @@ class Container {
 		}
 	}
 
-	async deleteAll() {
-		try {
-			await fs.promises.writeFile(this.nameFile, JSON.stringify([]));
-		} catch (error) {
-			console.log(error);
-		}
-	}
-
 	async updateProduct(id, body) {
 		try {
-			const contenido = await fs.promises.readFile(this.nameFile, 'utf-8');
+			// producto a actualizar
+			const product = await this.getById(id)
+			
+			const contenido = await fs.promises.readFile(`./src/db/${this.nameFile}`, 'utf-8');
+
 			if (contenido) {
 				const data = JSON.parse(contenido);
-				const newArray = data.map((item) =>
-					item.id === id ? { ...item, ...body } : item
-				);
+
+				const newProduct = {
+					id: product.id,
+					timestamp: product.timestamp
+				}
+
+				// Nos aseguramos de que no metan cosas que no pedimos
+				// Si no viene por el body el dato, va a seguir siendo el de la base de datos
+				newProduct.name = (!body.name) ? product.name : body.name 
+				newProduct.description = (!body.description) ? product.description : body.description
+				newProduct.price = (!body.code) ? product.code : body.code
+				newProduct.price = (!body.price) ? product.price : body.price
+				newProduct.image = (!body.image) ? product.image : body.image
+				newProduct.stock = (!body.stock) ? product.stock : body.stock
+
+
+				const index = data.findIndex(item => item.id === id)
+				data[index] = newProduct
+
 				await fs.promises.writeFile(
-					this.nameFile,
-					JSON.stringify(newArray, null, 2)
+					`./src/db/${this.nameFile}`,
+					JSON.stringify(data, null, 2)
 				);
-				return newArray.find((item) => item.id === id) || null;
+
+				return newProduct
 			} else {
 				throw new Error('No se encontró ningún producto para actualizar');
 			}
@@ -134,4 +151,4 @@ class Container {
 	}
 }
 
-module.exports.Container = Container;
+// principios solid
