@@ -1,22 +1,12 @@
-export const success = (req, res, status, msg) => {
+export const success = (res, status, msg, data) => {
     const statusCode = status || 200
     const statusMessage = msg || 'correct'
-  
+    const body = data || {}
+
     res.status(statusCode).json({
       error: false,
       status: statusCode,
-      body: statusMessage
+      message: statusMessage,
+      data: body
     })
 }
-  
-export const error = (req, res, status, msg) => {
-    const statusCode = status
-    const statusMessage = msg
-  
-    res.status(statusCode).json({
-      error: true,
-      status: statusCode,
-      body: statusMessage
-    })
-}
-  

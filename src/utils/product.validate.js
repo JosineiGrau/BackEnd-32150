@@ -1,6 +1,6 @@
 import error from './setError.js'
 
-export const validateDate = (req, res, next) => {
+export const validateData = (req, res, next) => {
   if (!req.body.name) {
     throw error('Name is required', 400)
   }
@@ -22,7 +22,7 @@ export const validateDate = (req, res, next) => {
   }
 
   if (!req.body.stock) {
-    throw error('Stock is requireds', 400)
+    throw error('Stock is required', 400)
   }
   next()
-}
+} 
