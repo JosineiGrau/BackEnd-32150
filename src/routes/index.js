@@ -1,12 +1,12 @@
 import {Router} from 'express'
 import { productsRoute } from './products.route.js'
-import { chatsRoute } from './chat.route.js'
+import { cartsRoute } from './carts.route.js'
 const router = Router()
 
 export const apiRouter = (app) => {
   app.use('/api', router)
   router.use('/productos', productsRoute)
-  router.use('/chat', chatsRoute)
+  router.use('/carritos', cartsRoute)
 
   app.use('*', async (req, res, next) => {
     res.status(400).json({

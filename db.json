@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1,
+    "name": "calculadora",
+    "code": "1234",
+    "price": 200,
+    "description": "sada",
+    "image": "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png",
+    "stock": 10
+  }
+]
