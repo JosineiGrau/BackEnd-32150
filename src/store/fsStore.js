@@ -53,7 +53,7 @@ export class FsStore {
 				);
 				return newProduct;
 			}
-		} catch (error) {
+		} catch (err) {
 			 throw error ('Internal Server Error', 500) 
 		}
 	}
@@ -64,7 +64,7 @@ export class FsStore {
 			const data = JSON.parse(contenido);
 			const productId =  data.find((item) => item.id === id)
 			return productId
-		} catch (error) {
+		} catch (err) {
 			 throw error ('Internal Server Error', 500) 
 		}
 	}
@@ -75,7 +75,7 @@ export class FsStore {
 			const data = JSON.parse(contenido);
 			return data;
 			
-		} catch (error) {
+		} catch (err) {
 			 throw error ('Internal Server Error', 500) 
 		}
 	}
@@ -90,7 +90,7 @@ export class FsStore {
 				JSON.stringify(newProductList, null, 2)
 			);
 			return data.find((item) => item.id === id);
-		} catch (error) {
+		} catch (err) {
 			 throw error ('Internal Server Error', 500) 
 		}
 	}

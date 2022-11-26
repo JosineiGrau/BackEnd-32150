@@ -1,5 +1,5 @@
-import { FsStore } from '../../../store/fsStore.js';
-import error from '../../../utils/setError.js';
+import { FsStore } from '../../store/fsStore.js';
+import error from '../../utils/setError.js';
 
 const products = new FsStore('db.json')
 
@@ -11,7 +11,7 @@ export class ProductsFS {
 
 	async getById(id) {
 		const productId = await products.getById(parseInt(id))
-        if(!productId) throw error('product not found', 404)
+        if(!productId) throw error('product not found',404)
         return productId
 	}
 
