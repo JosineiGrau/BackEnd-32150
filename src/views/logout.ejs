@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include("partials/head.ejs",{tituloWeb: 'Adios'}) %>
+	</head>
+	<body>
+		<section class="hero">
+			<h1>Hasta luego <%= name %> nos vemos pronto</h1>
+		</section>
+	</body>
+    <script>
+        const redireccionar = () => {
+            window.location = 'http://localhost:8080/api/login'
+        }
+        setTimeout(() => {
+            redireccionar()
+        },2000)
+    </script>
+</html>

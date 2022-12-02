@@ -2,12 +2,13 @@ import { Router } from 'express'
 import { success } from '../networks/responses.js'
 import { validateData } from '../utils/chatValidate.js';
 import { ChatFS } from '../services/mensajes/ChatFS.class.js';
+import { auth } from '../middleware/auth.js';
 const chat = new ChatFS()
 
 const chatsRoute = Router(); 
 
 // GET
-chatsRoute.get('/',async(req, res,next) => {
+chatsRoute.get('/', auth, async(req, res,next) => {
 	try {
 		const allMessages = await chat.getAll();
 		success(res,200,'Estos son todos los mensajes', allMessages)
@@ -16,7 +17,7 @@ chatsRoute.get('/',async(req, res,next) => {
 	}
 });
 
-chatsRoute.get('/coder/chats',async(req, res, next) => {
+chatsRoute.get('/coder/chats', auth, async(req, res, next) => {
     try {
 		const allMessages = await chat.getAll()
 		res.render('chat',{
@@ -27,7 +28,7 @@ chatsRoute.get('/coder/chats',async(req, res, next) => {
 	}
 });
 
-chatsRoute.post('/', validateData, async (req, res, next) => {
+chatsRoute.post('/', validateData, auth,async (req, res, next) => {
 	try {
 		const newMessage = req.body;
 		const getMessages = await chat.saveMessage(newMessage);

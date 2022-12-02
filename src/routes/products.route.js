@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { checkRol } from '../middleware/auth.js'
+import { auth, checkRol } from '../middleware/auth.js'
 import { success } from '../networks/responses.js'
 import { ProductsMock } from '../mocks/productsMock.js'
 import { ProductsFS } from '../services/productos/productFS.class.js'
@@ -9,7 +9,7 @@ const productsFS = new ProductsFS()
 const productsRoute = Router(); 
 
 // GET
-productsRoute.get('/',async(req, res, next) => {
+productsRoute.get('/', auth,async(req, res, next) => {
 	try {
 		const allProducts = await productsFS.getAll();
 		success(res,200,'Estos son todos los productos',allProducts)
@@ -18,7 +18,7 @@ productsRoute.get('/',async(req, res, next) => {
 	}
 });
 
-productsRoute.get('/:productId', async (req, res, next) => {
+productsRoute.get('/:productId', auth, async (req, res, next) => {
 	try {
 		const { productId } = req.params;
 		const productById = await productsFS.getById(productId);
@@ -30,7 +30,7 @@ productsRoute.get('/:productId', async (req, res, next) => {
 	}
 });
 
-productsRoute.get('/coder/product-test', async (req,res,next) => {
+productsRoute.get('/coder/product-test', auth, async (req,res,next) => {
 	try {
 		const newsProducts = await productMock.generate()
 		res.render('productos-test',{newsProducts})
@@ -39,7 +39,7 @@ productsRoute.get('/coder/product-test', async (req,res,next) => {
 		next(error)
 	}
 })
-productsRoute.get('/coder/productos', async (req,res,next) => {
+productsRoute.get('/coder/productos', auth, async (req,res,next) => {
 	try {
 		const allProducts = await productsFS.getAll()
 		res.render('productos',{allProducts})
@@ -48,7 +48,7 @@ productsRoute.get('/coder/productos', async (req,res,next) => {
 	}
 })
 // POST
-productsRoute.post('/', checkRol, async (req, res, next) => {
+productsRoute.post('/', checkRol, auth, async (req, res, next) => {
 	try {
 		const newProduct = req.body;
 		const getProducts = await productsFS.save(newProduct);
@@ -61,7 +61,7 @@ productsRoute.post('/', checkRol, async (req, res, next) => {
 
 
 // DELETE
-productsRoute.delete('/:productId' ,checkRol, async (req, res, next) => {
+productsRoute.delete('/:productId' ,checkRol, auth, async (req, res, next) => {
 	try {
 		const { productId } = req.params;
 		const deleteProduct = await productsFS.deleteById(productId);
@@ -74,7 +74,7 @@ productsRoute.delete('/:productId' ,checkRol, async (req, res, next) => {
 });
 
 // PUT
-productsRoute.put('/:productId',checkRol , async (req, res, next) => {
+productsRoute.put('/:productId',checkRol , auth, async (req, res, next) => {
 	try {
 		const { productId } = req.params;
 		const updateProduct = req.body;

@@ -8,3 +8,11 @@ export const checkRol = (req, res, next) => {
         throw error('No autorizado',401)
     }
 }
+
+export const auth = (req,res,next) => {
+    if(!req.session?.name) {
+        res.redirect('/api/login')
+    } else {
+        next()
+    }
+}
