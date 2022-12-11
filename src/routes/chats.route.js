@@ -2,13 +2,13 @@ import { Router } from 'express'
 import { success } from '../networks/responses.js'
 import { validateData } from '../utils/chatValidate.js';
 import { ChatFS } from '../services/mensajes/ChatFS.class.js';
-import { auth } from '../middleware/auth.js';
+import { checkSession } from '../middleware/auth.js';
 const chat = new ChatFS()
 
 const chatsRoute = Router(); 
 
 // GET
-chatsRoute.get('/', auth, async(req, res,next) => {
+chatsRoute.get('/', checkSession, async(req, res,next) => {
 	try {
 		const allMessages = await chat.getAll();
 		success(res,200,'Estos son todos los mensajes', allMessages)
@@ -17,7 +17,7 @@ chatsRoute.get('/', auth, async(req, res,next) => {
 	}
 });
 
-chatsRoute.get('/coder/chats', auth, async(req, res, next) => {
+chatsRoute.get('/coder/chats', checkSession, async(req, res, next) => {
     try {
 		const allMessages = await chat.getAll()
 		res.render('chat',{
@@ -28,11 +28,10 @@ chatsRoute.get('/coder/chats', auth, async(req, res, next) => {
 	}
 });
 
-chatsRoute.post('/', validateData, auth,async (req, res, next) => {
+chatsRoute.post('/', validateData, checkSession,async (req, res, next) => {
 	try {
 		const newMessage = req.body;
 		const getMessages = await chat.saveMessage(newMessage);
-		console.log(getMessages);
 		success(res,201,'Mensaje Agregado',getMessages)
 	} catch (err) {
 		next(err)

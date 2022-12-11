@@ -5,7 +5,13 @@ import path from 'path'
 import { fileURLToPath } from 'url';
 import { socket } from './socket.js';
 import cookieParser from 'cookie-parser';
-import { MongoAtlas } from './middleware/connectMongo.js';
+import { StoreSession } from './middleware/storeSession.js';
+import { mongo } from './middleware/MongoDB.js';
+import { passport } from './config/localStrategy.js';
+import { deserialize } from './utils/deserialize.js';
+import { serializer } from './utils/serialize.js';
+
+mongo()
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -22,11 +28,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(cookieParser())
-app.use(MongoAtlas)
+app.use(StoreSession)
+app.use(passport.initialize()) // conectamos a passport con express
+app.use(passport.session()) // vinculamos entre passport y las sesiones de los usuarios
+
+serializer()
+deserialize()
+// ROUTES
 apiRouter(app)
-
-
-
 
 // Escuche todos los errores
 app.use(errors)

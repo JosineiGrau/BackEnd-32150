@@ -1,15 +1,20 @@
 import {Router} from 'express'
 import { productsRoute } from './products.route.js'
 import { chatsRoute } from './chats.route.js'
-import { authRoute } from './auth.js'
-import { homeRoute } from './home.js'
+import { homeRoute } from './home.route.js'
+import { loginRoute } from './login.route.js'
+import { logoutRoute } from './logout.route.js'
+import { registerRouter } from './register.route.js'
+
 const router = Router()
 
 export const apiRouter = (app) => {
   app.use('/api', router)
   router.use('/productos', productsRoute)
   router.use('/chats', chatsRoute)
-  router.use('/login', authRoute)
+  router.use('/login', loginRoute)
+  router.use('/register', registerRouter)
+  router.use('/logout', logoutRoute)
   router.use('/home', homeRoute)
 
   app.use('*', async (req, res, next) => {

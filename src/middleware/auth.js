@@ -9,8 +9,8 @@ export const checkRol = (req, res, next) => {
     }
 }
 
-export const auth = (req,res,next) => {
-    if(!req.session?.name) {
+export const checkSession = (req,res,next) => {
+    if(!req.isAuthenticated()) {
         res.redirect('/api/login')
     } else {
         next()

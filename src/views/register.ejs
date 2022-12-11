@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <%- include("partials/head.ejs", {tituloWeb: "Registrarse"}) %>
+</head>
+<body>
+<div id="login-form-wrap">
+  <h2>Registrarse</h2>
+  <form id="login-form" method="post" action="/api/register">
+    <div>
+    <input type="text" id="username" name="name" placeholder="Usuario" required>
+    </div>
+    <div>
+        <input type="email" id="email" name="email" placeholder="Correo" required>
+        </div>
+    <div>
+      <input type="password" id="password" name="password" placeholder="Contraseña" required>
+      </div>
+    <div>
+    <input type="submit" id="login" value="Registrarse">
+    </div>
+  </form>
+  <div id="create-account-wrap">
+  </div>
+  <a href="/api/login">Iniciar sesión</a>
+</body>
+</html>
