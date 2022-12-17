@@ -1,9 +1,10 @@
 import mongoose from "mongoose"
+import dotenv from 'dotenv'
 
-const URL = 'mongodb+srv://josinei:Lilgrau1566@coderhouse.xjsf45t.mongodb.net/authDB?retryWrites=true&w=majority'
+dotenv.config()
 
 export const mongo = () => {
-    mongoose.connect(URL,{
+    mongoose.connect(process.env.DB_MONGO_url,{
         useNewUrlParser: true,
         useUnifiedTopology: true
     }, (err) => {

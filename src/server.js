@@ -10,19 +10,21 @@ import { mongo } from './middleware/MongoDB.js';
 import { passport } from './config/localStrategy.js';
 import { deserialize } from './utils/deserialize.js';
 import { serializer } from './utils/serialize.js';
+import dotenv from 'dotenv'
+import { args } from './utils/parseArgs.js';
 
+dotenv.config()
 mongo()
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 const app = express();
-const PORT = process.env.PORT || 8080
+const PORT = args.puerto || 8080
 // SETTINGS
 app.set('case sensitive routing', true);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-
 // MIDDLEWARE
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -37,6 +39,7 @@ deserialize()
 // ROUTES
 apiRouter(app)
 
+console.log(args)
 // Escuche todos los errores
 app.use(errors)
 

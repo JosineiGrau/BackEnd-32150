@@ -1,11 +1,12 @@
 import session from "express-session";
 import MongoStore from "connect-mongo"; 
-
+import dotenv from 'dotenv'
 // const advancedOptions = { useNewUrlParser: true, useUnifiedTopology: true}
-const mongoUrl = 'mongodb+srv://josinei:Lilgrau1566@coderhouse.xjsf45t.mongodb.net/sessionsDB?retryWrites=true&w=majority'
  
+dotenv.config()
+
 export const StoreSession = session({
-    store: MongoStore.create({ mongoUrl }),
+    store: MongoStore.create({ mongoUrl: process.env.DB_MONGO_url }),
 
     secret: 'claveSecreta',
     resave: false,

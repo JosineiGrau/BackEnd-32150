@@ -158,3 +158,24 @@ Start the server
 ```http
   GET /api/coder/chats
 ```
+
+### INFO
+
+```http
+  GET /api/info
+```
+
+# HTML
+```http
+  GET /api/info/vista
+```
+
+### NUMBERS RANDOMS
+
+```http
+  GET /api/randoms
+```
+
+```http
+  GET /api/randoms/no-bloqueante
+```

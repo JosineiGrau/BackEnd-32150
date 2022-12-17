@@ -1,0 +1,35 @@
+<html lang="en">
+	<head>
+		<%- include("partials/head.ejs", {tituloWeb: "info"}) %>
+	</head>
+	<body>
+		<header><%- include("partials/header.ejs") %></header>
+		<main>
+			<section class="main-table">
+				<table>
+					<thead>
+						<tr>
+							<th>Argumentos</th>
+							<th>Plataforma</th>
+							<th>Version Node</th>
+							<th>Memoria Reservada</th>
+							<th>Path</th>
+							<th>ID Proceso</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th><%= info.argumentos%></th>
+							<td><%= info.plataforma%></td>
+							<td>$<%= info.versionNode%></td>
+							<td>$<%= info.memoriaReservada%></td>
+							<td>$<%= info.path%></td>
+							<td>$<%= info.idProceso%></td>
+						</tr>
+						</tbody>
+				</table>
+			</section>
+		</main>
+	</body>
+	<footer><%- include("partials/footer.ejs") %></footer>
+</html>
