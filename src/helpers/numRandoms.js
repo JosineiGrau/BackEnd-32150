@@ -1,4 +1,4 @@
-export const getNumRandoms = (cant) => {
+const getNumRandoms = (cant) => {
     const numbers = {}
     console.log(typeof cant)
     for (let i = 0; i < cant; i++) {
@@ -7,3 +7,5 @@ export const getNumRandoms = (cant) => {
     }
     return numbers
 }
+
+module.exports = getNumRandoms

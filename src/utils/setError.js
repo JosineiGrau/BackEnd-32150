@@ -7,4 +7,5 @@ const error = (message, code) => {
   
     return e
 }
-export default error
+
+module.exports = error

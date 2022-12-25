@@ -1,7 +1,7 @@
-import { FsChatStore } from "../../store/fsStoreChats.js";
+const FsChatStore = require('../../store/fsStoreChats');
 const chats = new FsChatStore('chat.json')
 
-export class ChatFS {
+class ChatFS {
     async saveMessage(data){
       const newMessage = chats.saveMessage(data)
       return newMessage
@@ -12,3 +12,5 @@ export class ChatFS {
         return allMessages
 	}
 }
+
+module.exports = ChatFS

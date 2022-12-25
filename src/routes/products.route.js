@@ -1,7 +1,8 @@
-import { Router } from 'express'
-import { checkSession, checkRol } from '../middleware/auth.js'
-import { success } from '../networks/responses.js'
-import { ProductsFS } from '../services/productos/productFS.class.js'
+const { Router } = require('express')
+const { checkSession, checkRol } = require('../middleware/auth')
+const success = require('../networks/responses')
+const ProductsFS = require('../services/productos/productFS.class')
+
 
 const productsFS = new ProductsFS()
 const productsRoute = Router(); 
@@ -79,5 +80,5 @@ productsRoute.put('/:productId',checkRol , checkSession, async (req, res, next) 
 	}
 });
 
-export {productsRoute}
+module.exports = productsRoute
 

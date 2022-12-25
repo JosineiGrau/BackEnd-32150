@@ -1,5 +1,5 @@
-import { Router } from "express";
-import { passport } from "../config/localStrategy.js";
+const { Router } = require('express')
+const passport = require('../config/localStrategy')
 const registerRouter = Router()
 
 registerRouter.get("/",(req, res) => {
@@ -18,4 +18,4 @@ registerRouter.post("/",  passport.authenticate("signupStrategy",{
 })
 
 
-export {registerRouter}
+module.exports = registerRouter

@@ -1,10 +1,10 @@
-import {Server} from 'socket.io'
-import { normalizerChat } from './normalizer/chat.js';
-import { ChatFS } from './services/mensajes/ChatFS.class.js';
+const { Server } = require('socket.io');
+const normalizerChat = require('./normalizer/chat');
+const ChatFS = require('./services/mensajes/ChatFS.class');
 
 const chat = new ChatFS()
 
-export const socket = (server) => {
+const socket = (server) => {
     const io = new Server(server)
     io.on("connection",(socket)=>{
         console.log("nuevo socket o cliente conectado",socket.id);
@@ -20,3 +20,5 @@ export const socket = (server) => {
         })
     })
 }
+
+module.exports = socket

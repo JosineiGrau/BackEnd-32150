@@ -1,9 +1,9 @@
-import mongoose from "mongoose"
-import dotenv from 'dotenv'
+const mongoose = require('mongoose');
+const dotenv = require('dotenv')
 
 dotenv.config()
 
-export const mongo = () => {
+const mongo = () => {
     mongoose.connect(process.env.DB_MONGO_url,{
         useNewUrlParser: true,
         useUnifiedTopology: true
@@ -12,3 +12,5 @@ export const mongo = () => {
         console.log('Conexión a la base de datos de manera exitosa')
     })
 } 
+
+module.exports = mongo

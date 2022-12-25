@@ -1,8 +1,10 @@
-import error from './setError.js'
+const error = require('./setError');
 
-export const validateData = (req, res, next) => {
+const validateData = (req, res, next) => {
   if (!req.body.message) {
     throw error('message is required', 400)
   }
   next()
 }
+
+module.exports = validateData

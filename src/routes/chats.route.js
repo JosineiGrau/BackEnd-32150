@@ -1,8 +1,8 @@
-import { Router } from 'express'
-import { success } from '../networks/responses.js'
-import { validateData } from '../utils/chatValidate.js';
-import { ChatFS } from '../services/mensajes/ChatFS.class.js';
-import { checkSession } from '../middleware/auth.js';
+const { Router } = require('express')
+const success = require('../networks/responses')
+const validateData = require('../utils/chatValidate')
+const ChatFS = require('../services/mensajes/ChatFS.class')
+const { checkSession } = require('../middleware/auth')
 const chat = new ChatFS()
 
 const chatsRoute = Router(); 
@@ -38,4 +38,4 @@ chatsRoute.post('/', validateData, checkSession,async (req, res, next) => {
 	}
 }); 
 
-export {chatsRoute}
+module.exports = chatsRoute

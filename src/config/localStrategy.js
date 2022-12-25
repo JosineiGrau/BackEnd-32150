@@ -1,10 +1,10 @@
-import passport from "passport";
-import { Strategy as LocalStrategy}  from 'passport-local'
-import { UserModel } from "../models/users.js";
-import { encryptPassword } from "../utils/encryptPassword.js";
-import { matchPassword } from "../utils/matchPassword.js";
+const passport = require('passport')
+const { Strategy } = require('passport-local')
+const UserModel = require('../models/users')
+const encryptPassword = require('../utils/encryptPassword')
+const matchPassword = require('../utils/matchPassword')
 
-passport.use('loginStrategy',new LocalStrategy(
+passport.use('loginStrategy',new Strategy(
     {
         usernameField: 'email',
         passwordField: 'password',
@@ -22,7 +22,7 @@ passport.use('loginStrategy',new LocalStrategy(
     }
   ));
 
-passport.use('signupStrategy', new LocalStrategy(
+passport.use('signupStrategy', new Strategy(
     {
         usernameField: 'email',
         passwordField: 'password',
@@ -45,4 +45,4 @@ passport.use('signupStrategy', new LocalStrategy(
     }
 )) 
 
-export { passport }
+module.exports = passport

@@ -1,4 +1,4 @@
-export const errors = (err, req, res, next) => {
+const errors = (err, req, res, next) => {
   const statusMessage = err.message || 'Internal server error'
   const statusCode = err.statusCode || 500
 
@@ -9,3 +9,4 @@ export const errors = (err, req, res, next) => {
   })
 }
  
+module.exports = errors

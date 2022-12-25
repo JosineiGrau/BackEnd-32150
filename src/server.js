@@ -1,26 +1,28 @@
-import express from 'express';
-import { apiRouter } from './routes/index.js';
-import { errors } from './networks/errors.js';
-import path from 'path'
-import { fileURLToPath } from 'url';
-import { socket } from './socket.js';
-import cookieParser from 'cookie-parser';
-import { StoreSession } from './middleware/storeSession.js';
-import { mongo } from './middleware/MongoDB.js';
-import { passport } from './config/localStrategy.js';
-import { deserialize } from './utils/deserialize.js';
-import { serializer } from './utils/serialize.js';
-import dotenv from 'dotenv'
-import { args } from './utils/parseArgs.js';
+const express = require('express')
+const path = require('path')
+const { apiRouter } = require('./routes/index.js')
+const errors = require('./networks/errors')
+const socket = require('./socket')
+const cookieParser = require('cookie-parser')
+const StoreSession = require('./middleware/storeSession')
+const mongo = require('./middleware/MongoDB')
+const passport = require('./config/localStrategy')
+const deserialize = require('./utils/deserialize')
+const serializer = require('./utils/serialize')
+const dotenv = require('dotenv')
+const os = require('os')
+const cluster = require('cluster')
+const args = require('./utils/parseArgs')
 
 dotenv.config()
+
 mongo()
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+const numerosCPUs = os.cpus().length
 
 const app = express();
 const PORT = args.puerto || 8080
+console.log(args.puerto)
 // SETTINGS
 app.set('case sensitive routing', true);
 app.set('view engine', 'ejs');
@@ -43,8 +45,28 @@ console.log(args)
 // Escuche todos los errores
 app.use(errors)
 
-const server = app.listen(PORT, () => {
-	console.log(`tu servidor: http://localhost:${server.address().port}`);
-});
+if (args.mode === 'cluster') {
+	if (cluster.isPrimary) {
+		for (let i = 0; i < numerosCPUs; i++) {
+			cluster.fork()
+		}
+	
+		cluster.on('exit', (worker, err) => {
+			console.log(`El subProceso ${worker.process.pid} dejo de funcionar`)
+	
+			cluster.fork()
+		})
+	} else {
+		const server = app.listen(PORT, () => {
+			console.log(`tu servidor: http://localhost:${server.address().port} el proceso es ${process.pid}`);
+		});
+		socket(server)
+	}
+} else {
+	const server = app.listen(PORT, () => {
+		console.log(`tu servidor: http://localhost:${server.address().port} el proceso es ${process.pid}`);
+	});
+	socket(server)
+}
 
-socket(server)
+

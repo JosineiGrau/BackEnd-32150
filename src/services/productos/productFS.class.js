@@ -1,9 +1,9 @@
-import { FsStore } from '../../store/fsStore.js';
-import error from '../../utils/setError.js';
+const FsStore = require('../../store/fsStore');
+const error = require('../../utils/setError');
 
 const products = new FsStore('db.json')
 
-export class ProductsFS {
+class ProductsFS {
 	async save(product) {
 		const newProduct = await products.save(product)
         return newProduct
@@ -32,3 +32,5 @@ export class ProductsFS {
         return updatedProduct
 	}
 }
+
+module.exports = ProductsFS

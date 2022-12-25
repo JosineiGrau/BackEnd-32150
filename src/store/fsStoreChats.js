@@ -1,7 +1,7 @@
-import fs from 'fs'
-import error from '../utils/setError.js';
+const fs = require('fs');
+const error = require('../utils/setError');
 
-export class FsChatStore {
+class FsChatStore {
     constructor(nameFile){
         this.nameFile = nameFile
     }
@@ -78,3 +78,5 @@ export class FsChatStore {
 		}
 	}
 }
+
+module.exports = FsChatStore

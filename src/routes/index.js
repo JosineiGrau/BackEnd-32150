@@ -1,15 +1,16 @@
-import {Router} from 'express'
-import { productsRoute } from './products.route.js'
-import { chatsRoute } from './chats.route.js'
-import { homeRoute } from './home.route.js'
-import { loginRoute } from './login.route.js'
-import { logoutRoute } from './logout.route.js'
-import { registerRouter } from './register.route.js'
-import { infoRoute } from './info.js'
-import { randomsRoute } from './randoms.js'
+const { Router } = require('express')
+const chatsRoute = require('./chats.route')
+const homeRoute = require('./home.route')
+const infoRoute = require('./info')
+const loginRoute = require('./login.route')
+const registerRouter = require('./register.route')
+const logoutRoute = require('./logout.route')
+const productsRoute = require('./products.route')
+const randomsRoute = require('./randoms')
+
 const router = Router()
 
-export const apiRouter = (app) => {
+const apiRouter = (app) => {
   app.use('/api', router)
   router.use('/productos', productsRoute)
   router.use('/chats', chatsRoute)
@@ -31,3 +32,5 @@ export const apiRouter = (app) => {
     })
   })
 }
+
+module.exports.apiRouter = apiRouter

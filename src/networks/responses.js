@@ -1,4 +1,4 @@
-export const success = (res, status, msg, data) => {
+const success = (res, status, msg, data) => {
     const statusCode = status || 200
     const statusMessage = msg || 'correct'
     const body = data || {}
@@ -10,3 +10,5 @@ export const success = (res, status, msg, data) => {
       data: body
     })
 }
+
+module.exports = success

@@ -1,18 +1,13 @@
-import { Router } from "express";
-import { getNumRandoms } from "../helpers/numRandoms.js";
-import { fork } from 'child_process'
-import { fileURLToPath } from 'url';
-import path from 'path'
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+const { Router } = require('express')
+const getNumRandoms = require('../helpers/numRandoms')
+const { fork } = require('child_process')
+const path = require('path')
 
 const randomsRoute = Router()
 
 randomsRoute.get('/', (req, res) => {
     const cant = req.query.cant || 100000000
     const numbers = getNumRandoms(cant)
-    console.log(numbers)
     res.json({
       numbers
     })
@@ -31,4 +26,4 @@ randomsRoute.get('/no-bloqueante', (req, res) => {
 })
 
 
-export {randomsRoute}
+module.exports = randomsRoute

@@ -1,5 +1,5 @@
-import { Router } from "express";
-import { checkSession } from "../middleware/auth.js";
+const { Router } = require('express')
+const { checkSession } = require('../middleware/auth')
 
 const logoutRoute = Router()
 
@@ -12,4 +12,4 @@ logoutRoute.get('/', checkSession,(req, res, next) => {
   
 })
 
-export {logoutRoute}
+module.exports = logoutRoute

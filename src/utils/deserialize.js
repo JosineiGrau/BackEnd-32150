@@ -1,7 +1,8 @@
-import {passport } from "../config/localStrategy.js";
-import { UserModel } from "../models/users.js";
+const passport = require('../config/localStrategy');
 
-export const deserialize = () => {
+const UserModel = require('../models/users');
+
+const deserialize = () => {
     passport.deserializeUser((id, done) => {
         // validar si el usuario existe en la base de datos
         UserModel.findById(id, (err, userFound) => {
@@ -10,3 +11,5 @@ export const deserialize = () => {
         })
     })
 }
+
+module.exports = deserialize

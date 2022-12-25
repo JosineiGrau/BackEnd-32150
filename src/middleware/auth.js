@@ -1,7 +1,7 @@
-import { config } from '../config/config.js'
-import error from '../utils/setError.js'
+const config = require('../config/config')
+const error = require('../utils/setError')
 
-export const checkRol = (req, res, next) => {
+const checkRol = (req, res, next) => {
     if (config.admin === true) {
         next()
     } else{
@@ -9,10 +9,15 @@ export const checkRol = (req, res, next) => {
     }
 }
 
-export const checkSession = (req,res,next) => {
+const checkSession = (req,res,next) => {
     if(!req.isAuthenticated()) {
         res.redirect('/api/login')
     } else {
         next()
     }
+}
+
+module.exports = {
+   checkSession,
+   checkRol, 
 }

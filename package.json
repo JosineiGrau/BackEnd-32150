@@ -3,7 +3,6 @@
 	"version": "1.0.0",
 	"description": "",
 	"main": "server.js",
-	"type": "module",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/JosineiGrau/BackEnd-32150.git"
@@ -16,8 +15,15 @@
 		"dev": "nodemon src/server.js",
 		"start": "node src/server.js",
 		"format": "npx prettier --write .",
+		"forever-fork": "forever start src/server.js",
+		"forever-cluster": "forever start src/server.js -m cluster",
+		"pm2-fork": "pm2 start src/server.js --watch",
+		"pm2-fork2": "pm2 start src/server.js -- --p=8080",
+		"pm2-cluster": "pm2 start src/server.js --watch -i 4",
+		"pm2-cluster2": "pm2 start src/server.js --name='Servidor2' -i 3 -- --p=8081",
 		"lint": "eslint .",
-		"lint-fix": "eslint --fix . --ext .js"
+		"lint-fix": "eslint --fix . --ext .js",
+		"babel": "babel src/server.js -o src/index.js"
 	},
 	"keywords": [],
 	"author": "Josinei",

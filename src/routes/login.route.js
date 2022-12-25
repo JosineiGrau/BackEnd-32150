@@ -1,5 +1,5 @@
-import { Router } from "express";
-import { passport } from "../config/localStrategy.js";
+const { Router } = require('express')
+const passport = require('../config/localStrategy')
 
 const loginRoute = Router()
 
@@ -20,4 +20,5 @@ loginRoute.post('/', passport.authenticate('loginStrategy', {
     console.log(req.body)
     res.redirect('/api/home')
 })
-export {loginRoute}
+
+module.exports = loginRoute
