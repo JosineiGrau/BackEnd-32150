@@ -4,8 +4,6 @@ const passport = require('../config/localStrategy')
 const loginRoute = Router()
 
 loginRoute.get('/', (req, res) => {
-    console.log(req.session)
-
     res.render('login')
 })
 

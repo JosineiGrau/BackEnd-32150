@@ -41,27 +41,20 @@ deserialize()
 // ROUTES
 apiRouter(app)
 
-console.log(args)
 // Escuche todos los errores
 app.use(errors)
 
-if (args.mode === 'cluster') {
-	if (cluster.isPrimary) {
-		for (let i = 0; i < numerosCPUs; i++) {
-			cluster.fork()
-		}
-	
-		cluster.on('exit', (worker, err) => {
-			console.log(`El subProceso ${worker.process.pid} dejo de funcionar`)
-	
-			cluster.fork()
-		})
-	} else {
-		const server = app.listen(PORT, () => {
-			console.log(`tu servidor: http://localhost:${server.address().port} el proceso es ${process.pid}`);
-		});
-		socket(server)
+if (args.mode === 'cluster' && cluster.isPrimary) {
+	for (let i = 0; i < numerosCPUs; i++) {
+		cluster.fork()
 	}
+	
+	cluster.on('exit', (worker, err) => {
+		console.log(`El subProceso ${worker.process.pid} dejo de funcionar`)
+	
+		cluster.fork()
+	})
+	
 } else {
 	const server = app.listen(PORT, () => {
 		console.log(`tu servidor: http://localhost:${server.address().port} el proceso es ${process.pid}`);

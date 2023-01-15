@@ -7,6 +7,7 @@ const registerRouter = require('./register.route')
 const logoutRoute = require('./logout.route')
 const productsRoute = require('./products.route')
 const randomsRoute = require('./randoms')
+const { logger } = require('../config/loggerConfig')
 
 const router = Router()
 
@@ -30,6 +31,7 @@ const apiRouter = (app) => {
         msg: 'not implemented'
       }
     })
+    logger.warn(`${req.baseUrl} not found`)
   })
 }
 

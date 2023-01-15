@@ -2,6 +2,7 @@ const os = require('os')
 const { Router } = require('express')
 const dotenv = require('dotenv')
 const success = require('../networks/responses')
+const compression = require('compression')
 
 dotenv.config()
 
@@ -22,7 +23,7 @@ infoRoute.get('/', (req, res) => {
 })
 
 
-infoRoute.get('/vista', (req, res) => {
+infoRoute.get('/vista', compression() , (req, res) => {
     const info = {
         argumentos: process.argv.slice(2),
         plataforma: process.platform,

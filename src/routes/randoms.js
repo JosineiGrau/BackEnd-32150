@@ -2,15 +2,14 @@ const { Router } = require('express')
 const getNumRandoms = require('../helpers/numRandoms')
 const { fork } = require('child_process')
 const path = require('path')
+const success = require('../networks/responses')
 
 const randomsRoute = Router()
 
 randomsRoute.get('/', (req, res) => {
     const cant = req.query.cant || 100000000
     const numbers = getNumRandoms(cant)
-    res.json({
-      numbers
-    })
+    success(res, 200, 'resultado exitoso', numbers)
 })
 
 randomsRoute.get('/no-bloqueante', (req, res) => {
@@ -20,7 +19,7 @@ randomsRoute.get('/no-bloqueante', (req, res) => {
     if(numbers === 'listo') {
       computo.send(cant)
     }else {
-      res.json({numbers})
+      success(res, 200, 'resultado exitoso', numbers)
     }
   })
 })
