@@ -21,7 +21,7 @@ mongo()
 const numerosCPUs = os.cpus().length
 
 const app = express();
-const PORT = args.puerto || 8080
+const PORT = process.env.PORT || args.puerto || 8080
 console.log(args.puerto)
 // SETTINGS
 app.set('case sensitive routing', true);
