@@ -36,28 +36,63 @@ Start the server
 
 ## API Reference
 
+### AUTH
+
+#### Register
+
+```http
+  POST /register
+```
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `name`      | `string` | **Required**. Name user to save |
+| `email`      | `string` | **Required**. Email user to save |
+| `password`      | `string` | **Required**. Password user to save |
+| `direction`      | `string` | **Required**. Direction user to save |
+| `phone`      | `string` | **Required**. Phone user to save |
+| `age`      | `number` | **Required**. Age user to save |
+| `photo`      | `string` | **Required**.  Photo user to savee |
+
+
+#### Login
+
+```http
+  POST /login
+```
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `email`      | `string` | **Required**. Email user to save |
+| `password`      | `string` | **Required**. Password user to save |
+
+
+#### Logout
+
+```http
+  POST /logout
+```
+
 ### PRODUCTS
 
 #### Get all products
 
 ```http
-  GET /api/productos
+  GET /productos
 ```
 
 #### Get product
 
 ```http
-  GET /api/productos/${id}
+  GET /productos/${productID}
 ```
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `id`      | `number` | **Required**. Id of product to fetch |
+| `id`      | `number` | **Required**. productID of product to fetch |
 
 #### Post product
 
 ```http
-  POST /api/productos
+  POST /productos
 ```
 
 | Parameter | Type     | Description                       |
@@ -72,110 +107,89 @@ Start the server
 #### Put product
 
 ```http
-  PUT /api/productos/${id}
+  PUT /productos/${productID}
 ```
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `id`      | `number` | **Required**. Id of product to update |
+| `id`      | `number` | **Required**. productID of product to update |
 | `{data}`      |  | **Required**. Data for update product |
 
 #### Delete product
 
 ```http
-  DELETE /api/productos/${id}
+  DELETE /productos/${productID}
 ```
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `id`      | `number` | **Required**. Id of product to delete |
+| `id`      | `number` | **Required**. productID of product to delete |
 
 
-### CHAT
+### CARTS
 
-### Get all chats
+### Get all carts
 
 ```http
-  GET /api/chats
+  GET /carritos
 ```
+
+#### Get cart
+
+```http
+  GET /carritos/${cartID}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `number` | **Required**. cartID of cart to fetch |
 
 #### Post cart
 
 ```http
-  POST /api/chats
+  POST /carritos
 ```
+
+#### Post product to cart
+
+```http
+  POST /carritos/${cartID}
+```
+
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `message`      | `string` | **Required**. Message to send |
+| `id`      | `number` | **Required**. Cart cartID to save the product |
+| `body = id`      | `number` | **Required**. ProductID of the product |
 
 
-### VIEWS
-
-### HOME
-
-```http
-  GET /api/home
-```
-
-### LOGIN
+#### Delete cart
 
 ```http
-  GET /api/login
+  DELETE /carritos/${cartID}
 ```
 
-### LOGIN ERROR
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `number` | **Required**. Id of cart to delete |
+
+
+#### Delete product to cart
 
 ```http
-  GET /api/login/error
+  DELETE /carritos/${cartID}/productos/${productId}
 ```
 
-### REGISTER
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `number` | **Required**. Id of cart |
+| `productId`      | `number` | **Required**. Id of product to delete |
+
+#### Buy Items
 
 ```http
-  GET /api/register
+  POST /carritos/buy/${cartID}
 ```
 
-### REGISTER ERROR
-
-```http
-  GET /api/register/error
-```
-
-### LOGOUT
-
-```http
-  GET /api/logout
-```
-
-### PRODUCTS
-
-```http
-  GET /api/coder/productos
-```
-
-### CHATS
-
-```http
-  GET /api/coder/chats
-```
-
-### INFO
-
-```http
-  GET /api/info
-```
-
-# HTML
-```http
-  GET /api/info/vista
-```
-
-### NUMBERS RANDOMS
-
-```http
-  GET /api/randoms
-```
-
-```http
-  GET /api/randoms/no-bloqueante
-```
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `number` | **Required**. cartID of cart |
