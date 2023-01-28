@@ -1,4 +1,4 @@
-const { logger } = require("../config/loggerConfig")
+const { logger } = require("../config/logger.config")
 
 const success = (res, status, msg, data) => {
     const statusCode = status || 200
@@ -11,7 +11,10 @@ const success = (res, status, msg, data) => {
       message: statusMessage,
       data: body
     })
-    logger.info(body)
+    logger.info({
+      msg: statusMessage,
+      data:body
+    })
 }
 
 module.exports = success

@@ -2,11 +2,10 @@ const express = require('express')
 const path = require('path')
 const { apiRouter } = require('./routes/index.js')
 const errors = require('./networks/errors')
-const socket = require('./socket')
 const cookieParser = require('cookie-parser')
 const StoreSession = require('./middleware/storeSession')
 const mongo = require('./middleware/MongoDB')
-const passport = require('./config/localStrategy')
+const passport = require('./helpers/localStrategy')
 const deserialize = require('./utils/deserialize')
 const serializer = require('./utils/serialize')
 const dotenv = require('dotenv')
@@ -30,7 +29,6 @@ app.set('views', path.join(__dirname, 'views'));
 // MIDDLEWARE
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, '/public')));
 app.use(cookieParser())
 app.use(StoreSession)
 app.use(passport.initialize()) // conectamos a passport con express
@@ -59,7 +57,6 @@ if (args.mode === 'cluster' && cluster.isPrimary) {
 	const server = app.listen(PORT, () => {
 		console.log(`tu servidor: http://localhost:${server.address().port} el proceso es ${process.pid}`);
 	});
-	socket(server)
 }
 
 

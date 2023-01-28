@@ -1,4 +1,4 @@
-const passport = require('../config/localStrategy');
+const passport = require('../helpers/localStrategy');
 
 const UserModel = require('../models/users');
 
