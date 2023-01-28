@@ -3,6 +3,7 @@ const passport = require('../../helpers/localStrategy')
 const { verifyLogin } = require('../../middleware/auth')
 const success = require('../../networks/responses')
 const error = require('../../utils/setError')
+const { validationLoginUser } = require('../../utils/userValidate')
 
 const loginRoute = Router()
 
@@ -12,7 +13,7 @@ loginRoute.get('/error', (req, res) => {
     throw error(message, 404)
 })
 
-loginRoute.post('/', verifyLogin, passport.authenticate('loginStrategy', {
+loginRoute.post('/', verifyLogin, validationLoginUser, passport.authenticate('loginStrategy', {
     failureRedirect: '/login/error',
     failureMessage: true,
 }),async (req,res) => {

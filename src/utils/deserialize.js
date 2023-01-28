@@ -1,6 +1,6 @@
 const passport = require('../helpers/localStrategy');
 
-const UserModel = require('../models/users');
+const UserModel = require('../persistence/models/users.model');
 
 const deserialize = () => {
     passport.deserializeUser((id, done) => {

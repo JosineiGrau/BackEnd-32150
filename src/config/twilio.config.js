@@ -1,7 +1,10 @@
 const twilio = require("twilio")
+const dotenv = require('dotenv');
 
-const accoundId = "AC9cb09b10020279cc39cc3727cb40dce1"
-const authToken = "f94790e82af089ef9e60753f258eea09"
+dotenv.config()
+
+const accoundId = process.env.DB_ACCOUND_ID
+const authToken = process.env.DB_AUTH_TOKEN
 
 const client = twilio(accoundId, authToken);
 

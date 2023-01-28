@@ -1,10 +1,10 @@
 const moment = require('moment');
-const cartsModel = require('../../../models/carts');
-const MongoStore = require('../../../store/mongoStore')
 const error = require('../../../utils/setError');
 const ProductsMongo = require('../products/productsMongo.daos');
+const { carritos } = require('../../../persistence/index');
+
 const products = new ProductsMongo()
-const carritos = new MongoStore(cartsModel)
+
 
 class CartsMongo {
 

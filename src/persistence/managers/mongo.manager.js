@@ -1,5 +1,5 @@
-const dataAdapterMongo = require('../utils/dataAdapter');
-const error = require('../utils/setError');
+const dataAdapterMongo = require('../../utils/dataAdapter');
+const error = require('../../utils/setError');
 
 class MongoStore {
     constructor(collectionModel) {

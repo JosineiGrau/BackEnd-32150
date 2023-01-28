@@ -4,6 +4,7 @@ const { transporter, emailTemplateRegister, mailOptions } = require('../../confi
 const { verifyLogin } = require('../../middleware/auth')
 const success = require('../../networks/responses')
 const error = require('../../utils/setError')
+const { validationRegisterUser } = require('../../utils/userValidate')
 const registerRouter = Router()
 
 registerRouter.get("/error", (req, res, next) => {
@@ -11,7 +12,7 @@ registerRouter.get("/error", (req, res, next) => {
     throw error(message, 404)
 })
 
-registerRouter.post("/",  verifyLogin, passport.authenticate("signupStrategy",{
+registerRouter.post("/",  verifyLogin, validationRegisterUser, passport.authenticate("signupStrategy",{
     failureRedirect: '/register/error',
     failureMessage: true
 }), async (req, res) => {

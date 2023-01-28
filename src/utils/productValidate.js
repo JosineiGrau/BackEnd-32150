@@ -51,16 +51,23 @@ const updateProduct = [
     }
     return true
   }).optional(),
-  validarCampos
+
+  (req, res, next) => {
+    validarCampos(req, res, next)
+  }
 ]
 
 const deleteProduct = [
   check().custom(dbIdValidate),
-  validarCampos
+  (req, res, next) => {
+    validarCampos(req, res, next)
+  }
 ]
 
 const getProduct = [
   check().custom(dbIdValidate),
-  validarCampos
+  (req, res, next) => {
+    validarCampos(req, res, next)
+  }
 ]
 module.exports = { validationCreate, updateProduct, deleteProduct, getProduct }

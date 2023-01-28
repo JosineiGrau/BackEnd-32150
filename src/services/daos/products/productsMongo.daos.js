@@ -1,8 +1,5 @@
 const moment = require('moment');
-const productsModel = require('../../../models/products');
-const MongoStore = require('../../../store/mongoStore');
-
-const productos = new MongoStore(productsModel)
+const { productos } = require('../../../persistence/index');
 
 class ProductsMongo {
     async save(item) {
