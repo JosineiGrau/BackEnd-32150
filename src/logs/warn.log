@@ -3702,3 +3702,5 @@
 [2023-01-28T16:37:12.418] [WARN] default - /carritos/checkout/63d437d5617515d306c4d6e3 not found
 [2023-01-28T16:37:23.813] [WARN] default - /carritos/checkout/63d437d5617515d306c4d6e3 not found
 [2023-01-28T16:37:47.583] [ERROR] default - Authenticate
+[2023-01-28T16:59:27.015] [ERROR] default - Authenticate
+[2023-01-28T17:08:12.544] [ERROR] default - The number  is unverified. Trial accounts cannot send messages to unverified numbers; verify  at twilio.com/user/account/phone-numbers/verified, or purchase a Twilio number to send messages to unverified numbers.

@@ -158,3 +158,5 @@
 [2023-01-28T16:32:16.110] [ERROR] default - El usuario ya existe
 [2023-01-28T16:33:07.683] [ERROR] default - Contraseña incorrecta
 [2023-01-28T16:37:47.583] [ERROR] default - Authenticate
+[2023-01-28T16:59:27.015] [ERROR] default - Authenticate
+[2023-01-28T17:08:12.544] [ERROR] default - The number  is unverified. Trial accounts cannot send messages to unverified numbers; verify  at twilio.com/user/account/phone-numbers/verified, or purchase a Twilio number to send messages to unverified numbers.
