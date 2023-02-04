@@ -33,7 +33,6 @@ Start the server
   npm run start
 ```
 
-
 ## API Reference
 
 ### PRODUCTS
@@ -41,13 +40,13 @@ Start the server
 #### Get all products
 
 ```http
-  GET /api/productos
+  GET /productos
 ```
 
 #### Get product
 
 ```http
-  GET /api/productos/${id}
+  GET /productos/${id}
 ```
 
 | Parameter | Type     | Description                       |
@@ -57,7 +56,7 @@ Start the server
 #### Post product
 
 ```http
-  POST /api/productos
+  POST /productos
 ```
 
 | Parameter | Type     | Description                       |
@@ -72,7 +71,7 @@ Start the server
 #### Put product
 
 ```http
-  PUT /api/productos/${id}
+  PUT /productos/${id}
 ```
 
 | Parameter | Type     | Description                       |
@@ -83,7 +82,7 @@ Start the server
 #### Delete product
 
 ```http
-  DELETE /api/productos/${id}
+  DELETE /productos/${id}
 ```
 
 | Parameter | Type     | Description                       |
@@ -96,13 +95,13 @@ Start the server
 ### Get all chats
 
 ```http
-  GET /api/chats
+  GET /chats
 ```
 
 #### Post cart
 
 ```http
-  POST /api/chats
+  POST /chats
 ```
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
@@ -114,68 +113,68 @@ Start the server
 ### HOME
 
 ```http
-  GET /api/home
+  GET /home
 ```
 
 ### LOGIN
 
 ```http
-  GET /api/login
+  GET /login
 ```
 
 ### LOGIN ERROR
 
 ```http
-  GET /api/login/error
+  GET /login/error
 ```
 
 ### REGISTER
 
 ```http
-  GET /api/register
+  GET /register
 ```
 
 ### REGISTER ERROR
 
 ```http
-  GET /api/register/error
+  GET /register/error
 ```
 
 ### LOGOUT
 
 ```http
-  GET /api/logout
+  GET /logout
 ```
 
 ### PRODUCTS
 
 ```http
-  GET /api/coder/productos
+  GET /productos/view
 ```
 
 ### CHATS
 
 ```http
-  GET /api/coder/chats
+  GET /chats/view
 ```
 
 ### INFO
 
 ```http
-  GET /api/info
+  GET /info
 ```
 
 # HTML
 ```http
-  GET /api/info/vista
+  GET /info/view
 ```
 
 ### NUMBERS RANDOMS
 
 ```http
-  GET /api/randoms
+  GET /randoms
 ```
 
 ```http
-  GET /api/randoms/no-bloqueante
+  GET /randoms/no-bloqueante
 ```
