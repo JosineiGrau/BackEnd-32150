@@ -1,7 +1,6 @@
-const FsStore = require('../../store/fsStore');
 const error = require('../../utils/setError');
+const { products } = require('../../persistence/index');
 
-const products = new FsStore('db.json')
 
 class ProductsFS {
 	async save(product) {

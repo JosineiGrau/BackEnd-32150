@@ -1,6 +1,6 @@
 const { Server } = require('socket.io');
 const normalizerChat = require('./normalizer/chat');
-const ChatFS = require('./services/mensajes/ChatFS.class');
+const ChatFS = require('./services/daos/ChatFS.daos');
 
 const chat = new ChatFS()
 

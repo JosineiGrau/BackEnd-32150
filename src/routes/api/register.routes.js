@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const passport = require('../config/localStrategy')
+const passport = require('../../helpers/localStrategy')
 const registerRouter = Router()
 
 registerRouter.get("/",(req, res) => {
@@ -11,10 +11,10 @@ registerRouter.get("/error", (req, res) => {
 })
 
 registerRouter.post("/",  passport.authenticate("signupStrategy",{
-    failureRedirect: '/api/register/error',
+    failureRedirect: '/register/error',
     failureMessage: true
 }),(req, res) => {
-    res.redirect("/api/home")
+    res.redirect("/home")
 })
 
 

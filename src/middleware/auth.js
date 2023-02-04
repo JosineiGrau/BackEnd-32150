@@ -17,7 +17,19 @@ const checkSession = (req,res,next) => {
     }
 }
 
+const verifyLogin = (req, res, next) => {
+    if(req.isAuthenticated()) {
+        res.status(401).json({
+            error: false,
+            msg: 'Usted ya se encuentra logeado'
+        })
+    } else {
+        next()
+    }
+}
+
 module.exports = {
    checkSession,
    checkRol, 
+   verifyLogin
 }

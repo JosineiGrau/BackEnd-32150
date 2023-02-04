@@ -1,6 +1,6 @@
 const passport = require('passport')
 const { Strategy } = require('passport-local')
-const UserModel = require('../models/users')
+const UserModel = require('../persistence/models/users')
 const encryptPassword = require('../utils/encryptPassword')
 const matchPassword = require('../utils/matchPassword')
 

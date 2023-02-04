@@ -1,24 +1,19 @@
-const { Router } = require('express')
-const { checkSession, checkRol } = require('../middleware/auth')
-const success = require('../networks/responses')
-const ProductsFS = require('../services/productos/productFS.class')
-
-
+const success = require('../networks/responses');
+const ProductsFS = require('../services/daos/productFS.daos')
 const productsFS = new ProductsFS()
-const productsRoute = Router(); 
 
-// GET
-productsRoute.get('/', checkSession,async(req, res, next) => {
-	try {
+
+const getProductsController = async (req, res, next) => {
+    try {
 		const allProducts = await productsFS.getAll();
 		success(res,200,'Estos son todos los productos',allProducts)
 	} catch (err) {
 		next(err)
 	}
-});
+}
 
-productsRoute.get('/:productId', checkSession, async (req, res, next) => {
-	try {
+const getProductController = async (req, res, next) => {
+    try {
 		const { productId } = req.params;
 		const productById = await productsFS.getById(productId);
 
@@ -27,19 +22,19 @@ productsRoute.get('/:productId', checkSession, async (req, res, next) => {
 	} catch (err) {
 		next(err);
 	}
-});
+}
 
-productsRoute.get('/coder/productos', checkSession, async (req,res,next) => {
-	try {
+const getViewProductsController = async (req, res, next) => {
+    try {
 		const allProducts = await productsFS.getAll()
 		res.render('productos',{allProducts})
 	} catch (error) {
 		next(error)
 	}
-})
-// POST
-productsRoute.post('/', checkRol, checkSession, async (req, res, next) => {
-	try {
+}
+
+const postProductController = async (req, res, next) => {
+    try {
 		const newProduct = req.body;
 		const getProducts = await productsFS.save(newProduct);
 
@@ -47,12 +42,10 @@ productsRoute.post('/', checkRol, checkSession, async (req, res, next) => {
 	} catch (err) {
 		next(err)
 	}
-}); 
+}
 
-
-// DELETE
-productsRoute.delete('/:productId' ,checkRol, checkSession, async (req, res, next) => {
-	try {
+const deleteProductController = async (req, res, next) => {
+    try {
 		const { productId } = req.params;
 		const deleteProduct = await productsFS.deleteById(productId);
 
@@ -61,11 +54,10 @@ productsRoute.delete('/:productId' ,checkRol, checkSession, async (req, res, nex
 	} catch (err) {
 		next(err)
 	}
-});
+}
 
-// PUT
-productsRoute.put('/:productId',checkRol , checkSession, async (req, res, next) => {
-	try {
+const putProductController = async (req, res, next) => {
+    try {
 		const { productId } = req.params;
 		const updateProduct = req.body;
 		const updatedProduct = await productsFS.update(
@@ -78,7 +70,13 @@ productsRoute.put('/:productId',checkRol , checkSession, async (req, res, next) 
 	} catch (err) {
 		next(err)
 	}
-});
+}
 
-module.exports = productsRoute
-
+module.exports = {
+    getProductsController,
+    getProductController,
+    getViewProductsController,
+    postProductController,
+    deleteProductController,
+    putProductController
+}

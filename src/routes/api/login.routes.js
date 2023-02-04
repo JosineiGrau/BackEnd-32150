@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const passport = require('../config/localStrategy')
+const passport = require('../../helpers/localStrategy')
 
 const loginRoute = Router()
 
@@ -12,11 +12,11 @@ loginRoute.get('/error', (req, res) => {
 })
 
 loginRoute.post('/', passport.authenticate('loginStrategy', {
-    failureRedirect: '/api/login/error',
+    failureRedirect: '/login/error',
     failureMessage: true,
 }),(req,res) => {
     console.log(req.body)
-    res.redirect('/api/home')
+    res.redirect('/home')
 })
 
 module.exports = loginRoute

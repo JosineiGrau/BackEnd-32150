@@ -1,14 +1,7 @@
 const os = require('os')
-const { Router } = require('express')
-const dotenv = require('dotenv')
-const success = require('../networks/responses')
-const compression = require('compression')
+const success = require("../networks/responses")
 
-dotenv.config()
-
-const infoRoute = Router()
-
-infoRoute.get('/', (req, res) => {
+const getInfoController = (req, res) => {
     const info = {
         argumentos: process.argv.slice(2),
         plataforma: process.platform,
@@ -20,10 +13,9 @@ infoRoute.get('/', (req, res) => {
         núcleos: os.cpus().length,
     }
     success(res, 200, 'Datos obtenidos', info)
-})
+}
 
-
-infoRoute.get('/vista', compression() , (req, res) => {
+const getViewInfoController = (req, res) => {
     const info = {
         argumentos: process.argv.slice(2),
         plataforma: process.platform,
@@ -35,10 +27,10 @@ infoRoute.get('/vista', compression() , (req, res) => {
         núcleos: os.cpus().length,
     }
     res.render('info', {info})
-})
+}
 
-infoRoute.get('/api', (req, res) => {
-	res.send(`Respuesta desde PID ${process.pid}`)
-})
 
-module.exports = infoRoute
+module.exports = {
+    getInfoController,
+    getViewInfoController
+}

@@ -1,12 +1,12 @@
 const express = require('express')
 const path = require('path')
-const { apiRouter } = require('./routes/index.js')
+const { apiRouter } = require('./routes/index')
 const errors = require('./networks/errors')
 const socket = require('./socket')
 const cookieParser = require('cookie-parser')
 const StoreSession = require('./middleware/storeSession')
 const mongo = require('./middleware/MongoDB')
-const passport = require('./config/localStrategy')
+const passport = require('./helpers/localStrategy')
 const deserialize = require('./utils/deserialize')
 const serializer = require('./utils/serialize')
 const dotenv = require('dotenv')
@@ -61,5 +61,4 @@ if (args.mode === 'cluster' && cluster.isPrimary) {
 	});
 	socket(server)
 }
-
 

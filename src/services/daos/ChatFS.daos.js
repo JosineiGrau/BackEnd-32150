@@ -1,5 +1,5 @@
-const FsChatStore = require('../../store/fsStoreChats');
-const chats = new FsChatStore('chat.json')
+const { chats } = require('../../persistence/index');
+
 
 class ChatFS {
     async saveMessage(data){

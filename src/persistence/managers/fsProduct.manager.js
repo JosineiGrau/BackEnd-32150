@@ -1,5 +1,5 @@
 const fs = require('fs');
-const error = require('../utils/setError');
+const error = require('../../utils/setError');
 
 class FsStore {
 	constructor(nameFile) {
