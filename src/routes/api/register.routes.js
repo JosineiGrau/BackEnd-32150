@@ -1,20 +1,20 @@
 const { Router } = require('express')
 const passport = require('../../helpers/localStrategy')
+const { verifyLogin } = require('../../middleware/auth')
+const success = require('../../networks/responses')
+const error = require('../../utils/setError')
 const registerRouter = Router()
 
-registerRouter.get("/",(req, res) => {
-    res.render("register")
+registerRouter.get("/error", (req, res, next) => {
+    const message = req.session.messages.pop()
+    throw error(message, 404)
 })
 
-registerRouter.get("/error", (req, res) => {
-    res.render("errorRegister")
-})
-
-registerRouter.post("/",  passport.authenticate("signupStrategy",{
+registerRouter.post("/",  verifyLogin, passport.authenticate("signupStrategy",{
     failureRedirect: '/register/error',
     failureMessage: true
-}),(req, res) => {
-    res.redirect("/home")
+}), async (req, res) => {
+    success(res, 201, 'Usuario registrado')
 })
 
 

@@ -11,7 +11,10 @@ const checkRol = (req, res, next) => {
 
 const checkSession = (req,res,next) => {
     if(!req.isAuthenticated()) {
-        res.redirect('/api/login')
+        res.status(401).json({
+            error: true,
+            msg: 'Debe iniciar sesión para continuar'
+        })
     } else {
         next()
     }
@@ -19,7 +22,7 @@ const checkSession = (req,res,next) => {
 
 const verifyLogin = (req, res, next) => {
     if(req.isAuthenticated()) {
-        res.status(401).json({
+        res.status(200).json({
             error: false,
             msg: 'Usted ya se encuentra logeado'
         })
@@ -27,6 +30,7 @@ const verifyLogin = (req, res, next) => {
         next()
     }
 }
+
 
 module.exports = {
    checkSession,

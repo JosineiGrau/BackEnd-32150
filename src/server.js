@@ -5,7 +5,6 @@ const errors = require('./networks/errors')
 const socket = require('./socket')
 const cookieParser = require('cookie-parser')
 const StoreSession = require('./middleware/storeSession')
-const mongo = require('./middleware/MongoDB')
 const passport = require('./helpers/localStrategy')
 const deserialize = require('./utils/deserialize')
 const serializer = require('./utils/serialize')
@@ -13,16 +12,15 @@ const dotenv = require('dotenv')
 const os = require('os')
 const cluster = require('cluster')
 const args = require('./utils/parseArgs')
+const config = require('./config/config')
 
 dotenv.config()
 
-mongo()
 
 const numerosCPUs = os.cpus().length
 
 const app = express();
-const PORT = args.puerto || 8080
-console.log(args.puerto)
+
 // SETTINGS
 app.set('case sensitive routing', true);
 app.set('view engine', 'ejs');
@@ -56,7 +54,7 @@ if (args.mode === 'cluster' && cluster.isPrimary) {
 	})
 	
 } else {
-	const server = app.listen(PORT, () => {
+	const server = app.listen(config.server.PORT, () => {
 		console.log(`tu servidor: http://localhost:${server.address().port} el proceso es ${process.pid}`);
 	});
 	socket(server)

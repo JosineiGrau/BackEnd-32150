@@ -1,11 +1,9 @@
 const success = require('../networks/responses');
-const ProductsFS = require('../services/daos/productFS.daos')
-const productsFS = new ProductsFS()
-
+const { saveProduct, deleteProductById, getAllProducts, getProductById, updateProduct } = require('../services/products.service');
 
 const getProductsController = async (req, res, next) => {
     try {
-		const allProducts = await productsFS.getAll();
+		const allProducts = await getAllProducts();
 		success(res,200,'Estos son todos los productos',allProducts)
 	} catch (err) {
 		next(err)
@@ -15,7 +13,7 @@ const getProductsController = async (req, res, next) => {
 const getProductController = async (req, res, next) => {
     try {
 		const { productId } = req.params;
-		const productById = await productsFS.getById(productId);
+		const productById = await getProductById(productId);
 
 		success(res,200,'El producto Obtenido',productById)
 
@@ -26,7 +24,7 @@ const getProductController = async (req, res, next) => {
 
 const getViewProductsController = async (req, res, next) => {
     try {
-		const allProducts = await productsFS.getAll()
+		const allProducts = await getAllProducts()
 		res.render('productos',{allProducts})
 	} catch (error) {
 		next(error)
@@ -36,7 +34,7 @@ const getViewProductsController = async (req, res, next) => {
 const postProductController = async (req, res, next) => {
     try {
 		const newProduct = req.body;
-		const getProducts = await productsFS.save(newProduct);
+		const getProducts = await saveProduct(newProduct);
 
 		success(res,201,'Producto Agregado',getProducts)
 	} catch (err) {
@@ -47,7 +45,7 @@ const postProductController = async (req, res, next) => {
 const deleteProductController = async (req, res, next) => {
     try {
 		const { productId } = req.params;
-		const deleteProduct = await productsFS.deleteById(productId);
+		const deleteProduct = await deleteProductById(productId);
 
 		success(res,200,'Producto eliminado exitosamente',deleteProduct )	
 		
@@ -59,10 +57,10 @@ const deleteProductController = async (req, res, next) => {
 const putProductController = async (req, res, next) => {
     try {
 		const { productId } = req.params;
-		const updateProduct = req.body;
-		const updatedProduct = await productsFS.update(
+		const dataProduct = req.body;
+		const updatedProduct = await updateProduct(
 			productId,
-			updateProduct
+			dataProduct
 		);
 		
 		success(res,200,'Producto actualizado',updatedProduct)

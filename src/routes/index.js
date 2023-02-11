@@ -7,6 +7,7 @@ const registerRouter = require('./api/register.routes')
 const logoutRoute = require('./api/logout.routes')
 const productsRoute = require('./api/products.routes')
 const randomsRoute = require('./api/randoms.routes')
+const userRoute = require('./api/user.routes')
 const { logger } = require('../config/loggerConfig')
 
 const router = Router()
@@ -21,6 +22,7 @@ const apiRouter = (app) => {
   router.use('/home', homeRoute)
   router.use('/info', infoRoute)
   router.use('/randoms', randomsRoute)
+  router.use('/users', userRoute)
 
   app.use('*', async (req, res, next) => {
     res.status(400).json({

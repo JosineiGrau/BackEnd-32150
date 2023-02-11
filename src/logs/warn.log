@@ -3517,3 +3517,33 @@
 [2023-01-14T19:08:31.878] [WARN] default - /randoms/no-bloqueante not found
 [2023-01-14T19:08:31.880] [WARN] default - /randoms/no-bloqueante not found
 [2023-01-14T19:08:31.881] [WARN] default - /randoms/no-bloqueante not found
+[2023-02-10T17:42:18.263] [WARN] default - /api/login not found
+[2023-02-10T17:42:21.636] [WARN] default - /api/login not found
+[2023-02-10T17:42:23.464] [WARN] default - /api/login not found
+[2023-02-10T17:42:39.179] [WARN] default - /api/login not found
+[2023-02-10T17:44:13.224] [WARN] default - /api/login not found
+[2023-02-10T17:45:44.205] [WARN] default - /api/login not found
+[2023-02-10T17:45:45.828] [WARN] default - /api/login not found
+[2023-02-10T17:45:49.082] [WARN] default - /api/login not found
+[2023-02-10T17:46:07.291] [WARN] default - /api/login not found
+[2023-02-10T17:51:48.598] [WARN] default - /api/login not found
+[2023-02-10T17:51:52.389] [WARN] default - /api/login not found
+[2023-02-10T17:51:56.413] [WARN] default - /api/login not found
+[2023-02-10T17:51:57.282] [WARN] default - /api/login not found
+[2023-02-10T17:51:57.924] [WARN] default - /api/login not found
+[2023-02-10T17:55:41.080] [ERROR] default - Unexpected token } in JSON at position 179
+[2023-02-10T18:03:13.440] [ERROR] default - Internal Server Error
+[2023-02-10T18:07:19.078] [WARN] default - /api/login not found
+[2023-02-11T09:09:16.764] [WARN] default - /users not found
+[2023-02-11T09:09:20.345] [WARN] default - /user not found
+[2023-02-11T09:09:39.554] [WARN] default - /users not found
+[2023-02-11T09:26:29.983] [ERROR] default - Operation `users.findOne()` buffering timed out after 10000ms
+[2023-02-11T09:27:01.346] [ERROR] default - Operation `users.findOne()` buffering timed out after 10000ms
+[2023-02-11T09:28:28.311] [ERROR] default - Operation `users.findOne()` buffering timed out after 10000ms
+[2023-02-11T09:29:21.806] [ERROR] default - Operation `users.findOne()` buffering timed out after 10000ms
+[2023-02-11T09:29:33.543] [ERROR] default - Operation `users.findOne()` buffering timed out after 10000ms
+[2023-02-11T09:39:45.396] [ERROR] default - El usuario ya existe
+[2023-02-11T09:39:49.594] [ERROR] default - El usuario ya existe
+[2023-02-11T09:40:30.661] [ERROR] default - Missing credentials
+[2023-02-11T09:42:09.340] [ERROR] default - El usuario ya existe
+[2023-02-11T09:42:20.662] [WARN] default - /users not found

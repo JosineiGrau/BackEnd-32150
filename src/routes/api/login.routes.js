@@ -1,22 +1,21 @@
 const { Router } = require('express')
 const passport = require('../../helpers/localStrategy')
+const { verifyLogin } = require('../../middleware/auth')
+const success = require('../../networks/responses')
+const error = require('../../utils/setError')
 
 const loginRoute = Router()
 
-loginRoute.get('/', (req, res) => {
-    res.render('login')
-})
-
 loginRoute.get('/error', (req, res) => {
-    res.render('errorLogin')
+    const message = req.session.messages.pop()
+    throw error(message, 404)
 })
 
-loginRoute.post('/', passport.authenticate('loginStrategy', {
+loginRoute.post('/', verifyLogin, passport.authenticate('loginStrategy', {
     failureRedirect: '/login/error',
     failureMessage: true,
-}),(req,res) => {
-    console.log(req.body)
-    res.redirect('/home')
+}),async (req,res) => {
+    success(res, 200, 'Usuario logueado')
 })
 
 module.exports = loginRoute

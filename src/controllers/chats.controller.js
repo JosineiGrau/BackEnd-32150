@@ -1,12 +1,9 @@
 const success = require('../networks/responses');
-const ChatFS = require('../services/daos/ChatFS.daos');
-
-const chat = new ChatFS()
-
+const { saveMessage, getChats } = require('../services/chats.service');
 
 const getChatsController = async (req, res, next) => {
     try {
-		const allMessages = await chat.getAll();
+		const allMessages = await getChats();
 		success(res,200,'Estos son todos los mensajes', allMessages)
 	} catch (err) {
 		next(err)
@@ -15,7 +12,7 @@ const getChatsController = async (req, res, next) => {
 
 const getViewChatsController = async (req, res, next) => {
     try {
-		const allMessages = await chat.getAll()
+		const allMessages = await getChats()
 		res.render('chat',{
 			allMessages
 		})
@@ -27,7 +24,7 @@ const getViewChatsController = async (req, res, next) => {
 const postChatController = async (req, res, next) => {
     try {
 		const newMessage = req.body;
-		const getMessages = await chat.saveMessage(newMessage);
+		const getMessages = await saveMessage(newMessage);
 		success(res,201,'Mensaje Agregado',getMessages)
 	} catch (err) {
 		next(err)

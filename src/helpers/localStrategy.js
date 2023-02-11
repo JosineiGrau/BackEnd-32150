@@ -35,8 +35,13 @@ passport.use('signupStrategy', new Strategy(
             const newUser = {
                 name: req.body.name,
                 email,
-                password: await encryptPassword(password)
+                password: await encryptPassword(password),
+                direction: req.body.direction,
+                phone: req.body.phone,
+                age: req.body.age,
+                photo: req.body.photo
             }
+            console.log(newUser)
             UserModel.create(newUser,(err, userCreate) => {
                 if(err) return done(err, null, {message: 'Hubo un error al registrar al usuario'})
                 return done(null, userCreate)

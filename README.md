@@ -108,6 +108,13 @@ Start the server
 | `message`      | `string` | **Required**. Message to send |
 
 
+### USERS
+
+### Get all users
+```http
+  GET /users
+```
+
 ### VIEWS
 
 ### HOME
