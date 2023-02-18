@@ -1,10 +1,8 @@
-const FsStore = require("../../managers/fs.manager");
+import { FsStore } from "../../managers/fs.manager.js";
 
-class ChatsFsDao extends FsStore {
+export class ChatsFsDao extends FsStore {
     // eslint-disable-next-line no-useless-constructor
     constructor(nameFile) {
         super(nameFile)
     }
 }
-
-module.exports = ChatsFsDao

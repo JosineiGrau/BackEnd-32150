@@ -1,7 +1,7 @@
-const success = require('../networks/responses');
-const { saveProduct, deleteProductById, getAllProducts, getProductById, updateProduct } = require('../services/products.service');
+import success from '../networks/responses.js'
+import { saveProduct, deleteProductById, getAllProducts, getProductById, updateProduct } from '../services/products.service.js';
 
-const getProductsController = async (req, res, next) => {
+export const getProductsController = async (req, res, next) => {
     try {
 		const allProducts = await getAllProducts();
 		success(res,200,'Estos son todos los productos',allProducts)
@@ -10,7 +10,7 @@ const getProductsController = async (req, res, next) => {
 	}
 }
 
-const getProductController = async (req, res, next) => {
+export const getProductController = async (req, res, next) => {
     try {
 		const { productId } = req.params;
 		const productById = await getProductById(productId);
@@ -22,7 +22,7 @@ const getProductController = async (req, res, next) => {
 	}
 }
 
-const getViewProductsController = async (req, res, next) => {
+export const getViewProductsController = async (req, res, next) => {
     try {
 		const allProducts = await getAllProducts()
 		res.render('productos',{allProducts})
@@ -31,7 +31,7 @@ const getViewProductsController = async (req, res, next) => {
 	}
 }
 
-const postProductController = async (req, res, next) => {
+export const postProductController = async (req, res, next) => {
     try {
 		const newProduct = req.body;
 		const getProducts = await saveProduct(newProduct);
@@ -42,7 +42,7 @@ const postProductController = async (req, res, next) => {
 	}
 }
 
-const deleteProductController = async (req, res, next) => {
+export const deleteProductController = async (req, res, next) => {
     try {
 		const { productId } = req.params;
 		const deleteProduct = await deleteProductById(productId);
@@ -54,7 +54,7 @@ const deleteProductController = async (req, res, next) => {
 	}
 }
 
-const putProductController = async (req, res, next) => {
+export const putProductController = async (req, res, next) => {
     try {
 		const { productId } = req.params;
 		const dataProduct = req.body;
@@ -63,18 +63,9 @@ const putProductController = async (req, res, next) => {
 			dataProduct
 		);
 		
-		success(res,200,'Producto actualizado',updatedProduct)
+		success(res,202,'Producto actualizado',updatedProduct)
 
 	} catch (err) {
 		next(err)
 	}
-}
-
-module.exports = {
-    getProductsController,
-    getProductController,
-    getViewProductsController,
-    postProductController,
-    deleteProductController,
-    putProductController
 }

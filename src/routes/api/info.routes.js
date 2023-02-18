@@ -1,7 +1,7 @@
-const { Router } = require('express')
-const dotenv = require('dotenv')
-const compression = require('compression')
-const { getInfoController, getViewInfoController } = require('../../controllers/info.controller')
+import { Router } from 'express'
+import dotenv from 'dotenv'
+import compression from 'compression'
+import { getInfoController, getViewInfoController } from '../../controllers/info.controller.js'
 
 dotenv.config()
 
@@ -16,4 +16,4 @@ infoRoute.get('/api', (req, res) => {
 	res.send(`Respuesta desde PID ${process.pid}`)
 })
 
-module.exports = infoRoute
+export {infoRoute}

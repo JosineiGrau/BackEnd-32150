@@ -1,8 +1,8 @@
-const passport = require('passport')
-const { Strategy } = require('passport-local')
-const UserModel = require('../persistence/models/users')
-const encryptPassword = require('../utils/encryptPassword')
-const matchPassword = require('../utils/matchPassword')
+import passport from 'passport'
+import { Strategy } from 'passport-local'
+import { UserModel } from '../persistence/models/users.js'
+import encryptPassword from '../utils/encryptPassword.js'
+import matchPassword from '../utils/matchPassword.js'
 
 passport.use('loginStrategy',new Strategy(
     {
@@ -50,4 +50,4 @@ passport.use('signupStrategy', new Strategy(
     }
 )) 
 
-module.exports = passport
+export default passport

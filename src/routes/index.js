@@ -1,18 +1,18 @@
-const { Router } = require('express')
-const chatsRoute = require('./api/chats.routes')
-const homeRoute = require('./api/home.routes')
-const infoRoute = require('./api/info.routes')
-const loginRoute = require('./api/login.routes')
-const registerRouter = require('./api/register.routes')
-const logoutRoute = require('./api/logout.routes')
-const productsRoute = require('./api/products.routes')
-const randomsRoute = require('./api/randoms.routes')
-const userRoute = require('./api/user.routes')
-const { logger } = require('../config/loggerConfig')
+import { Router } from 'express'
+import { logger } from '../config/loggerConfig.js'
+import { chatsRoute } from './api/chats.routes.js'
+import { homeRoute } from './api/home.routes.js'
+import { infoRoute } from './api/info.routes.js'
+import { loginRoute } from './api/login.routes.js'
+import { logoutRoute } from './api/logout.routes.js'
+import { productsRoute } from './api/products.routes.js'
+import { randomsRoute } from './api/randoms.routes.js'
+import { registerRouter } from './api/register.routes.js'
+import { userRoute } from './api/user.routes.js'
 
 const router = Router()
 
-const apiRouter = (app) => {
+export const apiRouter = (app) => {
   app.use('/', router)
   router.use('/productos', productsRoute)
   router.use('/chats', chatsRoute)
@@ -37,4 +37,3 @@ const apiRouter = (app) => {
   })
 }
 
-module.exports.apiRouter = apiRouter

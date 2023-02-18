@@ -1,46 +1,34 @@
-const error = require('../utils/setError');
-const getApiDao = require('../persistence/index');
-const config = require('../config/config');
+import { getApiDao } from '../persistence/index.js';
+import config from '../config/config.js';
+import error from '../utils/setError.js';
 
-let db;
 
-getApiDao(config.server.dbType).then((data) => {
-  db = data.ProductsDaoContainer
-})
+const { ProductsDaoContainer } = await getApiDao(config.server.dbType)
 
-const saveProduct = async (product) => {
-	const newProduct = await db.save(product)
+export const saveProduct = async (product) => {
+	const newProduct = await ProductsDaoContainer.save(product)
     return newProduct
 }
 
-const getProductById = async (id) => {
-	const productId = await db.getById(parseInt(id))
+export const getProductById = async (id) => {
+	const productId = await ProductsDaoContainer.getById(parseInt(id))
     if(!productId) throw error('product not found',404)
     return productId
 }
 
-const getAllProducts = async () => {
-	const allProducts = await db.getAll()
+export const getAllProducts = async () => {
+	const allProducts = await ProductsDaoContainer.getAll()
     return allProducts
 }
 
-const deleteProductById = async (id) => {
-    await this.getById(id)
-	const deleteProduct = await db.deleteById(parseInt(id))
+export const deleteProductById = async (id) => {
+    await getProductById(id)
+	const deleteProduct = await ProductsDaoContainer.deleteById(parseInt(id))
     return deleteProduct
 }
 
-const updateProduct = async (id, body) => {
-    await this.getById(id)
-	const updatedProduct = await db.update(parseInt(id), body)
+export const updateProduct = async (id, body) => {
+    await getProductById(id)
+	const updatedProduct = await ProductsDaoContainer.update(parseInt(id), body)
     return updatedProduct
-}
-
-
-module.exports = {
-	saveProduct,
-	getProductById,
-	getAllProducts,
-	deleteProductById,
-	updateProduct
 }

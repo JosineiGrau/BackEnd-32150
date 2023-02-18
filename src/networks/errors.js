@@ -1,4 +1,4 @@
-const { logger } = require("../config/loggerConfig")
+import { logger } from '../config/loggerConfig.js'
 
 const errors = (err, req, res, next) => {
   const statusMessage = err.message || 'Internal server error'
@@ -11,5 +11,5 @@ const errors = (err, req, res, next) => {
   })
   logger.error(statusMessage)
 }
- 
-module.exports = errors
+
+export default errors

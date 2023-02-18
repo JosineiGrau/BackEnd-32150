@@ -1,23 +1,15 @@
-const getApiDao = require('../persistence/index');
-const config = require('../config/config');
+import { getApiDao } from '../persistence/index.js';
+import config from '../config/config.js';
 
-let db;
 
-getApiDao(config.server.dbType).then((data) => {
-  db = data.ChatsDaoContainer
-})
+const { ChatsDaoContainer } = await getApiDao(config.server.dbType)
 
-const saveMessage = async (data) => {
-    const newMessage = await db.saveMessage(data)
+
+export const saveMessage = async (data) => {
+    const newMessage = await ChatsDaoContainer.saveMessage(data)
     return newMessage
 }
-const getChats = async () => {
-    const allMessages = await db.getAll()
+export const getChats = async () => {
+    const allMessages = await ChatsDaoContainer.getAll()
     return allMessages
-}
-
-
-module.exports = {
-  saveMessage,
-  getChats
 }

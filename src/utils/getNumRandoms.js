@@ -1,4 +1,4 @@
-const getNumRandoms = require('../helpers/numRandoms');
+import getNumRandoms from "../helpers/numRandoms.js"
 
 process.on('exit', () => {
     console.log(`worker #${process.pid} | handleGetRandoms cerrado`)

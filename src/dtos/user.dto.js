@@ -7,7 +7,7 @@ class UserDto {
     }
 }
 
-const covertToDto = (users) => {
+export const covertToDto = (users) => {
     if (Array.isArray(users)) {
         const newData = users.map((user) =>  new UserDto(user))
         return newData
@@ -16,5 +16,3 @@ const covertToDto = (users) => {
         return newData
     }
 }
-
-module.exports = covertToDto

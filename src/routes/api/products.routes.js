@@ -1,24 +1,24 @@
-const { Router } = require('express')
-const { getProductsController, getProductController, getViewProductsController, postProductController, deleteProductController, putProductController } = require('../../controllers/products.controller')
-const { checkSession, checkRol } = require('../../middleware/auth')
+import { Router } from 'express';
+import { getProductController, deleteProductController, getProductsController, getViewProductsController, postProductController, putProductController } from '../../controllers/products.controller.js';
+import { checkRol } from '../../middleware/auth.js';
 
 const productsRoute = Router(); 
 
 // GET
-productsRoute.get('/', checkSession, getProductsController);
+productsRoute.get('/',  getProductsController);
 
-productsRoute.get('/:productId', checkSession, getProductController);
+productsRoute.get('/:productId',  getProductController);
 
-productsRoute.get('/view', checkSession, getViewProductsController)
+productsRoute.get('/view',  getViewProductsController)
 // POST
-productsRoute.post('/', checkRol, checkSession,postProductController); 
+productsRoute.post('/', checkRol, postProductController); 
 
 
 // DELETE
-productsRoute.delete('/:productId' ,checkRol, checkSession, deleteProductController);
+productsRoute.delete('/:productId' ,checkRol,  deleteProductController);
 
 // PUT
-productsRoute.put('/:productId',checkRol , checkSession, putProductController);
+productsRoute.put('/:productId',checkRol ,  putProductController);
 
-module.exports = productsRoute
+export { productsRoute }
 

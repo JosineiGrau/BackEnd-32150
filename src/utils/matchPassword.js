@@ -1,7 +1,7 @@
-const bcrypt = require('bcrypt');
+import bcrypt from 'bcrypt';
 
 const matchPassword = async (password, hasPass) => {
     return await bcrypt.compare(password, hasPass)
 }
 
-module.exports = matchPassword
+export default matchPassword

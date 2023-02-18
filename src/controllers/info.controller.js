@@ -1,7 +1,8 @@
-const os = require('os')
-const success = require("../networks/responses")
+import os from 'os'
+import success from '../networks/responses.js'
 
-const getInfoController = (req, res) => {
+
+export const getInfoController = (req, res) => {
     const info = {
         argumentos: process.argv.slice(2),
         plataforma: process.platform,
@@ -15,7 +16,7 @@ const getInfoController = (req, res) => {
     success(res, 200, 'Datos obtenidos', info)
 }
 
-const getViewInfoController = (req, res) => {
+export const getViewInfoController = (req, res) => {
     const info = {
         argumentos: process.argv.slice(2),
         plataforma: process.platform,
@@ -27,10 +28,4 @@ const getViewInfoController = (req, res) => {
         núcleos: os.cpus().length,
     }
     res.render('info', {info})
-}
-
-
-module.exports = {
-    getInfoController,
-    getViewInfoController
 }

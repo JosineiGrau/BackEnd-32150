@@ -1,20 +1,17 @@
-const { Server } = require('socket.io');
-const config = require('./config/config');
-const normalizerChat = require('./normalizer/chat');
-const getApiDao = require('./persistence');
+import { Server } from 'socket.io';
+import config from './config/config.js';
+import { normalizerChat } from './normalizer/chat.js';
+import { getApiDao } from './persistence/index.js';
 
-let db;
-getApiDao(config.server.dbType).then((data) => {
-  db = data.ChatsDaoContainer
-})
+const { ChatsDaoContainer } = await getApiDao(config.server.dbType)
 
 const socket = (server) => {
     const io = new Server(server)
     io.on("connection",(socket)=>{
         console.log("nuevo socket o cliente conectado",socket.id);
         socket.on("clientMessage",async (data)=>{
-            await db.saveMessage(data)
-            const messageHistory = await db.getAll()
+            await ChatsDaoContainer.saveMessage(data)
+            const messageHistory = await ChatsDaoContainer.getAll()
             const res = normalizerChat(messageHistory)
             io.sockets.emit("messageHistory",res)
         })
@@ -25,4 +22,4 @@ const socket = (server) => {
     })
 }
 
-module.exports = socket
+export default socket

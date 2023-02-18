@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
-const error = require('../utils/setError');
-const config = require('../config/config');
+import mongoose from 'mongoose'
+import error from '../utils/setError.js'
+import config from '../config/config.js'
 
-class MongoClient {
+export class MongoClient {
     constructor() {
         this.client = mongoose
     }
@@ -26,4 +26,3 @@ class MongoClient {
         }
     }
 }
-module.exports = MongoClient

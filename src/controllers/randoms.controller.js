@@ -1,15 +1,15 @@
-const getNumRandoms = require('../helpers/numRandoms')
-const success = require('../networks/responses')
-const { fork } = require('child_process')
-const path = require('path')
+import { fork } from 'child_process'
+import path from 'path'
+import getNumRandoms from '../helpers/numRandoms.js'
+import success from '../networks/responses.js'
 
-const getNumRandomsController = (req, res) => {
+export const getNumRandomsController = (req, res) => {
     const cant = req.query.cant || 100000000
     const numbers = getNumRandoms(cant)
     success(res, 200, 'resultado exitoso', numbers)
 }
 
-const getNumRandomsNoBloqController = (req, res) => {
+export const getNumRandomsNoBloqController = (req, res) => {
     const cant = req.query.cant || 100000000
     const computo = fork(path.resolve(__dirname, '../utils/getNumRandoms.js'))
     computo.on('message', numbers => {
@@ -19,10 +19,4 @@ const getNumRandomsNoBloqController = (req, res) => {
         success(res, 200, 'resultado exitoso', numbers)
       }
     })
-}
-
-
-module.exports = {
-    getNumRandomsController,
-    getNumRandomsNoBloqController
 }

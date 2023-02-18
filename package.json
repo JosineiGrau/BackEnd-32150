@@ -3,6 +3,7 @@
 	"version": "1.0.0",
 	"description": "",
 	"main": "server.js",
+    "type": "module",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/JosineiGrau/BackEnd-32150.git"
@@ -14,6 +15,7 @@
 	"scripts": {
 		"dev": "nodemon src/server.js",
 		"start": "node src/server.js",
+		"test": "mocha src/test/products.test.js",
 		"start-fork": "node src/server.js -m fork",
 		"start-cluster": "node src/server.js -m cluster",
 		"format": "npx prettier --write .",
@@ -30,6 +32,7 @@
 	"author": "Josinei",
 	"license": "ISC",
 	"dependencies": {
+		"axios": "^1.3.3",
 		"bcrypt": "^5.1.0",
 		"compression": "^1.7.4",
 		"connect-mongo": "^4.6.0",
@@ -50,11 +53,14 @@
 		"socket.io": "4.5.3"
 	},
 	"devDependencies": {
+		"chai": "^4.3.7",
 		"eslint": "8.23.1",
 		"eslint-config-prettier": "8.5.0",
 		"eslint-config-standard": "17.0.0",
 		"eslint-plugin-import": "2.26.0",
 		"eslint-plugin-n": "15.2.5",
-		"eslint-plugin-promise": "6.0.1"
+		"eslint-plugin-promise": "6.0.1",
+		"mocha": "^10.2.0",
+		"supertest": "^6.3.3"
 	}
 }

@@ -1,9 +1,9 @@
-const { Router } = require('express')
-const { getUsersController } = require('../../controllers/user.controller')
-const { checkSession } = require('../../middleware/auth')
+import { Router } from 'express'
+import { getUsersController } from '../../controllers/user.controller.js'
+import { checkSession } from '../../middleware/auth.js'
 
 const userRoute = Router()
 
 userRoute.get('/', checkSession, getUsersController)
 
-module.exports = userRoute
+export { userRoute }

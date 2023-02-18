@@ -10,5 +10,5 @@ const dataAdapterMongo = (data) => {
     }
     return dataAdapter
   }
-  
-  module.exports = dataAdapterMongo
+
+  export default dataAdapterMongo

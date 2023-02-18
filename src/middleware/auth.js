@@ -1,7 +1,7 @@
-const config = require('../config/config')
-const error = require('../utils/setError')
+import config from '../config/config.js'
+import error from '../utils/setError.js'
 
-const checkRol = (req, res, next) => {
+export const checkRol = (req, res, next) => {
     if (config.admin === true) {
         next()
     } else{
@@ -9,7 +9,7 @@ const checkRol = (req, res, next) => {
     }
 }
 
-const checkSession = (req,res,next) => {
+export const checkSession = (req,res,next) => {
     if(!req.isAuthenticated()) {
         res.status(401).json({
             error: true,
@@ -20,7 +20,7 @@ const checkSession = (req,res,next) => {
     }
 }
 
-const verifyLogin = (req, res, next) => {
+export const verifyLogin = (req, res, next) => {
     if(req.isAuthenticated()) {
         res.status(200).json({
             error: false,
@@ -29,11 +29,4 @@ const verifyLogin = (req, res, next) => {
     } else {
         next()
     }
-}
-
-
-module.exports = {
-   checkSession,
-   checkRol, 
-   verifyLogin
 }

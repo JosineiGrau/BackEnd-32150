@@ -1,11 +1,8 @@
-const MongoStore = require("../../managers/mongo.manager");
+import { MongoStore } from "../../managers/mongo.manager.js";
 
-
-class UserMongoDao extends MongoStore {
+export class UserMongoDao extends MongoStore {
     // eslint-disable-next-line no-useless-constructor
     constructor(collectionModel) {
         super(collectionModel)
     }
 }
-
-module.exports = UserMongoDao

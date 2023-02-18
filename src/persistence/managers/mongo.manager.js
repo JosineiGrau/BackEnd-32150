@@ -1,7 +1,7 @@
-const dataAdapterMongo = require('../../utils/dataAdapter.utility');
-const error = require('../../utils/setError');
+import error from '../../utils/setError.js';
+import dataAdapterMongo from '../../utils/dataAdapter.utility.js';
 
-class MongoStore {
+export class MongoStore {
     constructor(collectionModel) {
         this.collectionModel = collectionModel
     }
@@ -9,8 +9,7 @@ class MongoStore {
     async save(item) {
         try {
             const result = await this.collectionModel.create(item)
-            console.log(result)
-            return result
+            return dataAdapterMongo(result)
         } catch (err) {
             throw error ('Internal Server Error', 500) 
         }
@@ -53,5 +52,3 @@ class MongoStore {
         }
     }
 }
-
-module.exports = MongoStore

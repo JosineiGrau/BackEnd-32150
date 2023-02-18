@@ -1,7 +1,7 @@
-const success = require('../networks/responses');
-const { saveMessage, getChats } = require('../services/chats.service');
+import success from '../networks/responses.js'
+import { saveMessage, getChats } from '../services/chats.service.js';
 
-const getChatsController = async (req, res, next) => {
+export const getChatsController = async (req, res, next) => {
     try {
 		const allMessages = await getChats();
 		success(res,200,'Estos son todos los mensajes', allMessages)
@@ -10,7 +10,7 @@ const getChatsController = async (req, res, next) => {
 	}
 }
 
-const getViewChatsController = async (req, res, next) => {
+export const getViewChatsController = async (req, res, next) => {
     try {
 		const allMessages = await getChats()
 		res.render('chat',{
@@ -21,7 +21,7 @@ const getViewChatsController = async (req, res, next) => {
 	}
 }
 
-const postChatController = async (req, res, next) => {
+export const postChatController = async (req, res, next) => {
     try {
 		const newMessage = req.body;
 		const getMessages = await saveMessage(newMessage);
@@ -29,10 +29,4 @@ const postChatController = async (req, res, next) => {
 	} catch (err) {
 		next(err)
 	}
-}
-
-module.exports = {
-    getChatsController,
-    getViewChatsController,
-    postChatController
 }

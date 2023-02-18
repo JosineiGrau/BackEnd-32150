@@ -1,4 +1,4 @@
-const error = require('./setError');
+import error from "./setError.js"
 
 const validateData = (req, res, next) => {
   if (!req.body.message) {
@@ -7,4 +7,4 @@ const validateData = (req, res, next) => {
   next()
 }
 
-module.exports = validateData
+export default validateData

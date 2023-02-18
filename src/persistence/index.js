@@ -1,9 +1,7 @@
-// const config = require("../config/config")
-const MongoClient = require("../clients/dbMongo.client");
-const UserModel = require("./models/users")
+import { MongoClient } from "../clients/dbMongo.client.js";
+import { UserModel } from "./models/users.js";
 
-
-const getApiDao = async (dbType) => {
+export const getApiDao = async (dbType) => {
     let UserDaoContainer;
     let ProductsDaoContainer;
     let ChatsDaoContainer;
@@ -11,9 +9,9 @@ const getApiDao = async (dbType) => {
     if (dbType === 'MONGO') {
         const client = new MongoClient()
         await client.connect()
-        const ProductsFsDao = await require("./daos/products/productsDao")
-        const ChatsFsDao = await require("./daos/chats/chatsFsDao")
-        const UserMongoDao = await require("./daos/users/userMongoDao")
+        const { ProductsFsDao } = await import("./daos/products/productsDao.js")
+        const { ChatsFsDao } = await import("./daos/chats/chatsFsDao.js")
+        const { UserMongoDao } = await import("./daos/users/userMongoDao.js")
         UserDaoContainer = new UserMongoDao(UserModel)
         ProductsDaoContainer = new ProductsFsDao('products.json')
         ChatsDaoContainer = new ChatsFsDao('chats.json')
@@ -26,5 +24,3 @@ const getApiDao = async (dbType) => {
         ChatsDaoContainer
     }
 }
-
-module.exports = getApiDao

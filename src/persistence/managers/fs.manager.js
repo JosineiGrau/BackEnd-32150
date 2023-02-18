@@ -1,7 +1,7 @@
-const fs = require('fs');
-const error = require('../../utils/setError');
+import fs from 'fs'
+import error from '../../utils/setError.js';
 
-class FsStore {
+export class FsStore {
 	constructor(nameFile) {
 		this.nameFile = nameFile;
 	}
@@ -166,5 +166,3 @@ class FsStore {
 		}
 	}
 }
-
-module.exports = FsStore

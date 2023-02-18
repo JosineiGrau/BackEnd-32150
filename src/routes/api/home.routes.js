@@ -1,5 +1,5 @@
-const { Router } = require('express')
-const { checkSession } = require('../../middleware/auth')
+import { Router } from 'express'
+import { checkSession } from '../../middleware/auth.js'
 
 const homeRoute = Router()
 
@@ -7,4 +7,4 @@ homeRoute.get('/', checkSession,(req, res) => {
     res.render('home')
 })
 
-module.exports = homeRoute
+export {homeRoute}

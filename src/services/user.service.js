@@ -1,19 +1,10 @@
-const config = require('../config/config');
-const covertToDto = require('../dtos/user.dto');
-const getApiDao = require('../persistence/index');
+import { covertToDto } from '../dtos/user.dto.js'
+import { getApiDao } from '../persistence/index.js';
+import config from '../config/config.js';
 
+const { UserDaoContainer } = await getApiDao(config.server.dbType)
 
-let db;
-
-getApiDao(config.server.dbType).then((data) => {
-  db = data.UserDaoContainer
-})
-
-const getAllUsers = async () => {
-    const users = await db.getAll()
+export const getAllUsers = async () => {
+    const users = await UserDaoContainer.getAll()
     return covertToDto(users)
-}
-
-module.exports = {
-    getAllUsers
 }

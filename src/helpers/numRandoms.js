@@ -8,4 +8,4 @@ const getNumRandoms = (cant) => {
     return numbers
 }
 
-module.exports = getNumRandoms
+export default getNumRandoms

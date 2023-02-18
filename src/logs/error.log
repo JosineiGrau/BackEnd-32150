@@ -1,17 +1,1 @@
-[2023-01-12T22:25:36.409] [ERROR] default - Unexpected token } in JSON at position 15
-[2023-01-12T22:29:40.536] [ERROR] default - Unexpected token } in JSON at position 16
-[2023-01-12T22:31:22.454] [ERROR] default - Unexpected token } in JSON at position 16
-[2023-01-14T18:26:42.896] [ERROR] default - Invalid array length
-[2023-01-14T18:30:34.030] [ERROR] default - Invalid array length
-[2023-01-14T18:36:11.323] [ERROR] default - Invalid array length
-[2023-02-10T17:55:41.080] [ERROR] default - Unexpected token } in JSON at position 179
-[2023-02-10T18:03:13.440] [ERROR] default - Internal Server Error
-[2023-02-11T09:26:29.983] [ERROR] default - Operation `users.findOne()` buffering timed out after 10000ms
-[2023-02-11T09:27:01.346] [ERROR] default - Operation `users.findOne()` buffering timed out after 10000ms
-[2023-02-11T09:28:28.311] [ERROR] default - Operation `users.findOne()` buffering timed out after 10000ms
-[2023-02-11T09:29:21.806] [ERROR] default - Operation `users.findOne()` buffering timed out after 10000ms
-[2023-02-11T09:29:33.543] [ERROR] default - Operation `users.findOne()` buffering timed out after 10000ms
-[2023-02-11T09:39:45.396] [ERROR] default - El usuario ya existe
-[2023-02-11T09:39:49.594] [ERROR] default - El usuario ya existe
-[2023-02-11T09:40:30.661] [ERROR] default - Missing credentials
-[2023-02-11T09:42:09.340] [ERROR] default - El usuario ya existe
+[2023-02-18T14:57:42.144] [ERROR] default - product not found

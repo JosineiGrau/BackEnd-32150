@@ -1,8 +1,9 @@
-const { Router } = require('express')
-const passport = require('../../helpers/localStrategy')
-const { verifyLogin } = require('../../middleware/auth')
-const success = require('../../networks/responses')
-const error = require('../../utils/setError')
+import { Router } from 'express'
+import passport from '../../helpers/localStrategy.js'
+import { verifyLogin } from '../../middleware/auth.js'
+import success from '../../networks/responses.js'
+import error from '../../utils/setError.js'
+
 const registerRouter = Router()
 
 registerRouter.get("/error", (req, res, next) => {
@@ -18,4 +19,4 @@ registerRouter.post("/",  verifyLogin, passport.authenticate("signupStrategy",{
 })
 
 
-module.exports = registerRouter
+export { registerRouter }

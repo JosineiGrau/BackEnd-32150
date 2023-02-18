@@ -1,18 +1,18 @@
-const express = require('express')
-const path = require('path')
-const { apiRouter } = require('./routes/index')
-const errors = require('./networks/errors')
-const socket = require('./socket')
-const cookieParser = require('cookie-parser')
-const StoreSession = require('./middleware/storeSession')
-const passport = require('./helpers/localStrategy')
-const deserialize = require('./utils/deserialize')
-const serializer = require('./utils/serialize')
-const dotenv = require('dotenv')
-const os = require('os')
-const cluster = require('cluster')
-const args = require('./utils/parseArgs')
-const config = require('./config/config')
+import express from 'express'
+import path from 'path'
+import dotenv from 'dotenv'
+import os from 'os'
+import cookieParser from 'cookie-parser'
+import { StoreSession } from './middleware/storeSession.js'
+import passport from './helpers/localStrategy.js'
+import serializer from './utils/serialize.js'
+import deserialize from './utils/deserialize.js'
+import { apiRouter } from './routes/index.js'
+import errors from './networks/errors.js'
+import args from './utils/parseArgs.js'
+import cluster from 'cluster'
+import config from './config/config.js'
+import socket from './socket.js'
 
 dotenv.config()
 
@@ -24,11 +24,11 @@ const app = express();
 // SETTINGS
 app.set('case sensitive routing', true);
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+// app.set('views', path.join(__dirname, 'views'));
 // MIDDLEWARE
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, '/public')));
+// app.use(express.static(path.join(__dirname, '/public')));
 app.use(cookieParser())
 app.use(StoreSession)
 app.use(passport.initialize()) // conectamos a passport con express
@@ -60,3 +60,4 @@ if (args.mode === 'cluster' && cluster.isPrimary) {
 	socket(server)
 }
 
+export default app

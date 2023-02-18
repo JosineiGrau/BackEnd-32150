@@ -1,5 +1,4 @@
-const passport = require('../helpers/localStrategy');
-
+import passport from "../helpers/localStrategy.js"
 
 const serializer = () => {
     passport.serializeUser((user, done) => {
@@ -7,4 +6,4 @@ const serializer = () => {
     })
 }
 
-module.exports = serializer
+export default serializer

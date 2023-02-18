@@ -1,5 +1,5 @@
-const dotenv = require('dotenv')
-const args = require("../utils/parseArgs")
+import dotenv from 'dotenv';
+import args from '../utils/parseArgs.js';
 dotenv.config()
 
 const config = {
@@ -15,4 +15,4 @@ const config = {
     }
 }
 
-module.exports = config
+export default config

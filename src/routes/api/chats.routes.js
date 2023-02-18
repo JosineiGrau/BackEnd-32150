@@ -1,7 +1,8 @@
-const { Router } = require('express')
-const validateData = require('../../utils/chatValidate')
-const { checkSession } = require('../../middleware/auth')
-const { getChatsController, getViewChatsController, postChatController } = require('../../controllers/chats.controller')
+import { Router } from 'express'
+import validateData from '../../utils/chatValidate.js'
+import { checkSession } from '../../middleware/auth.js'
+import { getChatsController, getViewChatsController, postChatController } from '../../controllers/chats.controller.js'
+
 
 const chatsRoute = Router(); 
 
@@ -12,4 +13,4 @@ chatsRoute.get('/view', checkSession, getViewChatsController);
 
 chatsRoute.post('/', validateData, checkSession, postChatController); 
 
-module.exports = chatsRoute
+export {chatsRoute}
