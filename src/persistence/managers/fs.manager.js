@@ -66,15 +66,11 @@ export class FsStore {
 					 const arrayMessage = JSON.parse(contenido);
 					 const id = this.addId(arrayMessage);
 					 const newMessage = {
-						 id,
-						 author: {
-							 id: data.user.email,
-							 name: data.user.name,
-							 lastname: data.user.lastname,
-						 },
-						 text: data.text,
-						 time_stamp: data.time_stamp,
+                         ...data,
+                        id,
+                        time_stamp: Date.now(),
 					 };
+
 					 arrayMessage.push(newMessage);    
 					  await fs.promises.writeFile(
 						 this.nameFile,
@@ -84,9 +80,9 @@ export class FsStore {
 					 
 				 } else {
 					 const newMessage = {
-						 id: 1,
-						 username: data.username,
-						 message: [data.message]
+                        ...data,
+                        id: 1,
+                        time_stamp: Date.now(),
 					 };
 					 await fs.promises.writeFile(
 						 this.nameFile,
@@ -96,9 +92,9 @@ export class FsStore {
 				 }
 			 } else {
 				 const newMessage = {
+                    ...data,
 					 id: 1,
-					 username: data.username,
-					 message: [data.message]
+                     time_stamp: Date.now(),
 				 };
 				 await fs.promises.writeFile(
 					 this.nameFile,

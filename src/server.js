@@ -1,5 +1,4 @@
 import express from 'express'
-import path from 'path'
 import dotenv from 'dotenv'
 import os from 'os'
 import cookieParser from 'cookie-parser'

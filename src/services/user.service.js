@@ -4,7 +4,10 @@ import config from '../config/config.js';
 
 const { UserDaoContainer } = await getApiDao(config.server.dbType)
 
-export const getAllUsers = async () => {
-    const users = await UserDaoContainer.getAll()
-    return covertToDto(users)
+
+export const usersRoot =  {
+    getAllUsers: async () => {
+        const users = await UserDaoContainer.getAll()
+        return covertToDto(users)
+    }
 }

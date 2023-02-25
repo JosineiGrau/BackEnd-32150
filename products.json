@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "calculadora",
-    "price": 200,
+    "price": 300,
     "image": "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png"
   },
   {
@@ -37,5 +37,11 @@
     "image": "https://home.ripley.com.pe/Attachment/WOP_5/2065233144486/2065233144486_2.jpg",
     "price": 4000,
     "stock": 30
+  },
+  {
+    "id": 8,
+    "name": "Iphone 8 plus",
+    "price": 5000,
+    "image": "https://home.ripley.com.pe/Attachment/WOP_5/2065233144486/2065233144486_2.jpg"
   }
 ]
