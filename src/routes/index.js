@@ -4,11 +4,7 @@ import { chatsGraphqlController } from '../controllers/chats.controller.graphql.
 import { infoGraphqlController } from '../controllers/info.controller.graphql.js'
 import { productsGraphqlController } from '../controllers/products.controller.graphql.js'
 import { usersGraphqlController } from '../controllers/user.controller.graphql.js'
-// import { loginRoute } from './api/login.routes.js'
-// import { logoutRoute } from './api/logout.routes.js'
-// import { registerRouter } from './api/register.routes.js'
-// import { userRoute } from './api/user.routes.js'
-
+import { authRouter } from './api/auth.routes.js'
 const router = Router()
 
 export const apiRouter = (app) => {
@@ -17,10 +13,8 @@ export const apiRouter = (app) => {
     router.use('/productos', productsGraphqlController())
     router.use('/chats', chatsGraphqlController())
     router.use('/users', usersGraphqlController())
-//   router.use('/login', loginRoute)
-//   router.use('/register', registerRouter)
-//   router.use('/logout', logoutRoute)
-
+    router.use('/auth', authRouter)
+  
     app.use('*', async (req, res, next) => {
         res.status(400).json({
         error: -2,

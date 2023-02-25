@@ -713,3 +713,16 @@
 [2023-02-24T18:32:59.950] [WARN] default - /favicon.ico not found
 [2023-02-24T18:33:01.019] [WARN] default - /favicon.ico not found
 [2023-02-24T18:33:09.124] [WARN] default - /favicon.ico not found
+[2023-02-25T15:01:48.983] [WARN] default -  not found
+[2023-02-25T15:01:49.370] [WARN] default - /favicon.ico not found
+[2023-02-25T15:01:52.245] [WARN] default - /favicon.ico not found
+[2023-02-25T17:53:56.392] [WARN] default - /login not found
+[2023-02-25T17:54:10.429] [WARN] default - /login not found
+[2023-02-25T17:54:11.493] [WARN] default - /login not found
+[2023-02-25T17:55:04.395] [WARN] default - /auth/logout not found
+[2023-02-25T17:55:32.819] [WARN] default - /login/error not found
+[2023-02-25T17:55:48.130] [WARN] default - /auth/auth/login/error not found
+[2023-02-25T17:56:03.838] [ERROR] default - El usuario no existe
+[2023-02-25T17:56:06.573] [ERROR] default - El usuario no existe
+[2023-02-25T17:56:17.589] [WARN] default - /login/error not found
+[2023-02-25T17:57:05.240] [ERROR] default - El usuario no existe
