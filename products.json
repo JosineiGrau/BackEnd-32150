@@ -1,41 +1,20 @@
 [
   {
-    "id": 1,
-    "name": "calculadora",
-    "price": 200,
-    "image": "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png"
-  },
-  {
-    "id": 3,
-    "name": "calculadora",
-    "price": 2000,
-    "image": "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png"
-  },
-  {
-    "id": 4,
+    "_id": 2,
     "name": "APPLE WATCH SERIES 3 38MM SPACE GREY",
     "description": "Este mágico dispositivo te permite hacer todo desde tu muñeca: recibir llamadas, enviar mensajes de texto o escuchar tus mensajes de voz. También podrás hablar con tus contactos por Walkie-Talkie y escuchar tu música favorita.",
     "code": 489533,
     "image": "https://home.ripley.com.pe/Attachment/WOP_5/2065233144486/2065233144486_2.jpg",
-    "price": 979,
-    "stock": 20
+    "price": 1500,
+    "stock": 10
   },
   {
-    "id": 6,
-    "name": "Iphone 14",
+    "_id": 3,
+    "name": "APPLE WATCH SERIES 3 38MM SPACE GREY",
     "description": "Este mágico dispositivo te permite hacer todo desde tu muñeca: recibir llamadas, enviar mensajes de texto o escuchar tus mensajes de voz. También podrás hablar con tus contactos por Walkie-Talkie y escuchar tu música favorita.",
     "code": 489533,
     "image": "https://home.ripley.com.pe/Attachment/WOP_5/2065233144486/2065233144486_2.jpg",
-    "price": 4000,
-    "stock": 30
-  },
-  {
-    "id": 7,
-    "name": "Iphone 14",
-    "description": "Este mágico dispositivo te permite hacer todo desde tu muñeca: recibir llamadas, enviar mensajes de texto o escuchar tus mensajes de voz. También podrás hablar con tus contactos por Walkie-Talkie y escuchar tu música favorita.",
-    "code": 489533,
-    "image": "https://home.ripley.com.pe/Attachment/WOP_5/2065233144486/2065233144486_2.jpg",
-    "price": 4000,
-    "stock": 30
+    "price": 1500,
+    "stock": 300
   }
 ]

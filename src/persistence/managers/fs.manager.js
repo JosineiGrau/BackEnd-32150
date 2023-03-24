@@ -1,4 +1,4 @@
-import fs from 'fs'
+import fs from 'fs';
 import error from '../../utils/setError.js';
 
 export class FsStore {
@@ -7,7 +7,7 @@ export class FsStore {
 	}
 
 	addId(data) {
-		const ids = data.map((item) => item.id);
+		const ids = data.map((item) => item._id);
 		const maxId = Math.max(...ids);
 		let addId = maxId === -Infinity ? 0 : maxId;
 		addId++;
@@ -22,7 +22,7 @@ export class FsStore {
 					const data = JSON.parse(contenido);
 					const id = this.addId(data);
 					const newProduct = {
-						id,
+						_id: id,
 						...product,
 					};
 					data.push(newProduct);
@@ -33,7 +33,7 @@ export class FsStore {
 					return data;
 				} else {
 					const newProduct = {
-						id: 1,
+						_id: 1,
 						...product,
 					};
 					await fs.promises.writeFile(
@@ -44,7 +44,7 @@ export class FsStore {
 				}
 			} else {
 				const newProduct = {
-					id: 1,
+					_id: 1,
 					...product,
 				};
 				await fs.promises.writeFile(
@@ -54,82 +54,30 @@ export class FsStore {
 				return newProduct;
 			}
 		} catch (err) {
-			 throw error ('Internal Server Error', 500) 
+			throw error('Internal Server Error', 500);
 		}
 	}
-	
-	async saveMessage(data){
-		try {
-			 if (fs.existsSync(this.nameFile)) {
-				 const contenido = await fs.promises.readFile(this.nameFile, 'utf-8');
-				 if (contenido) {
-					 const arrayMessage = JSON.parse(contenido);
-					 const id = this.addId(arrayMessage);
-					 const newMessage = {
-						 id,
-						 author: {
-							 id: data.user.email,
-							 name: data.user.name,
-							 lastname: data.user.lastname,
-						 },
-						 text: data.text,
-						 time_stamp: data.time_stamp,
-					 };
-					 arrayMessage.push(newMessage);    
-					  await fs.promises.writeFile(
-						 this.nameFile,
-						 JSON.stringify(arrayMessage, null, 2)
-					 );
-					 return arrayMessage
-					 
-				 } else {
-					 const newMessage = {
-						 id: 1,
-						 username: data.username,
-						 message: [data.message]
-					 };
-					 await fs.promises.writeFile(
-						 this.nameFile,
-						 JSON.stringify([newMessage], null, 2)
-					 );
-					 return newMessage;
-				 }
-			 } else {
-				 const newMessage = {
-					 id: 1,
-					 username: data.username,
-					 message: [data.message]
-				 };
-				 await fs.promises.writeFile(
-					 this.nameFile,
-					 JSON.stringify([newMessage], null, 2)
-				 );
-				 return newMessage;
-			 }
-		} catch (err) {
-			 throw error ('Internal Server Error', 500) 
-		}
-	 }
 
+	
 	async getById(id) {
 		try {
 			const contenido = await fs.promises.readFile(this.nameFile, 'utf-8');
 			const data = JSON.parse(contenido);
-			const productId =  data.find((item) => item.id === id)
-			return productId
+			const productId = data.find((item) => item._id === parseInt(id));
+			return productId;
 		} catch (err) {
-			 throw error ('Internal Server Error', 500) 
+			throw error('Internal Server Error', 500);
 		}
 	}
 
 	async getAll() {
 		try {
 			const contenido = await fs.promises.readFile(this.nameFile, 'utf-8');
+			console.log(contenido);
 			const data = JSON.parse(contenido);
 			return data;
-			
 		} catch (err) {
-			 throw error ('Internal Server Error', 500) 
+			throw error('Internal Server Error', 500);
 		}
 	}
 
@@ -137,32 +85,32 @@ export class FsStore {
 		try {
 			const contenido = await fs.promises.readFile(this.nameFile, 'utf-8');
 			const data = JSON.parse(contenido);
-			const newProductList = data.filter((item) => item.id !== id);
+			const newProductList = data.filter((item) => item._id !== parseInt(id));
 			await fs.promises.writeFile(
 				this.nameFile,
 				JSON.stringify(newProductList, null, 2)
 			);
-			return data.find((item) => item.id === id);
+			return data.find((item) => item._id === parseInt(id));
 		} catch (err) {
-			 throw error ('Internal Server Error', 500) 
+			throw error('Internal Server Error', 500);
 		}
 	}
 
 	async update(id, body) {
 		try {
 			const contenido = await fs.promises.readFile(this.nameFile, 'utf-8');
-			
+
 			const data = JSON.parse(contenido);
 			const newArray = data.map((item) =>
-				item.id === id ? { ...item, ...body } : item
+				item._id === parseInt(id) ? { ...item, ...body } : item
 			);
 			await fs.promises.writeFile(
 				this.nameFile,
 				JSON.stringify(newArray, null, 2)
 			);
-			return newArray.find((item) => item.id === id);
+			return newArray.find((item) => item._id === parseInt(id));
 		} catch (err) {
-			throw error ('Internal Server Error', 500) 
+			throw error('Internal Server Error', 500);
 		}
 	}
 }

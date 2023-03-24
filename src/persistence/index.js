@@ -1,26 +1,30 @@
-import { MongoClient } from "../clients/dbMongo.client.js";
-import { UserModel } from "./models/users.js";
+import { MongoClient } from '../clients/dbMongo.client.js';
+import { cartsModel } from './models/carts.js';
+import { productsModel } from './models/products.js';
 
 export const getApiDao = async (dbType) => {
-    let UserDaoContainer;
-    let ProductsDaoContainer;
-    let ChatsDaoContainer;
+	let ProductsDaoContainer;
+	let CartsDaoContainer;
 
-    if (dbType === 'MONGO') {
-        const client = new MongoClient()
-        await client.connect()
-        const { ProductsFsDao } = await import("./daos/products/productsDao.js")
-        const { ChatsFsDao } = await import("./daos/chats/chatsFsDao.js")
-        const { UserMongoDao } = await import("./daos/users/userMongoDao.js")
-        UserDaoContainer = new UserMongoDao(UserModel)
-        ProductsDaoContainer = new ProductsFsDao('products.json')
-        ChatsDaoContainer = new ChatsFsDao('chats.json')
-    } else {
-        console.log('BASE DE DATOS NO DISPONIBLE')
-    }
-    return {
-        UserDaoContainer,
-        ProductsDaoContainer,
-        ChatsDaoContainer
-    }
-}
+	const client = new MongoClient();
+	await client.connect();
+	if (dbType === 'MONGO') {
+		const { ProductsMongoDao } = await import(
+			'./daos/products/productsMongoDao.js'
+		);
+		const { CartsMongoDao } = await import('./daos/carts/cartsMongoDao.js');
+		ProductsDaoContainer = new ProductsMongoDao(productsModel);
+		CartsDaoContainer = new CartsMongoDao(cartsModel);
+	} else if (dbType === 'FS') {
+		const { ProductsFsDao } = await import('./daos/products/productsFsDao.js');
+		const { CartsFsDao } = await import('./daos/carts/cartsFsDao.js');
+		ProductsDaoContainer = new ProductsFsDao('products.json');
+		CartsDaoContainer = new CartsFsDao('carts.json');
+	} else {
+		console.log('BASE DE DATOS NO DISPONIBLE');
+	}
+	return {
+		ProductsDaoContainer,
+		CartsDaoContainer,
+	};
+};

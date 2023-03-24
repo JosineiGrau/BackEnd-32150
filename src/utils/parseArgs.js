@@ -1,8 +1,15 @@
 import parseArgs from 'minimist';
 
-const options = { alias: {m: 'mode', p: 'port', e: 'env', db: 'dataBase'}, default: {mode: 'fork', port: 8080, env: 'DEV', dataBase: 'MONGO'} }
+const options = {
+	alias: { m: 'mode', p: 'port', e: 'env', db: 'dataBase' },
+	default: { mode: 'fork', port: 8080, env: 'DEV', dataBase: 'FS' },
+};
 
-const args = parseArgs(process.argv.slice(2), options)
-console.log(args)
+const { mode, port, env, dataBase } = parseArgs(process.argv.slice(2), options);
 
-export default args
+export default {
+	mode,
+	port,
+	env,
+	dataBase,
+};
