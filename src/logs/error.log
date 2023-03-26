@@ -210,3 +210,23 @@
 [2023-03-23T21:12:55.655] [ERROR] default - product already removed
 [2023-03-23T21:13:10.889] [ERROR] default - product already removed
 [2023-03-23T21:14:01.939] [ERROR] default - the product is not in the cart
+[2023-03-26T16:43:04.457] [ERROR] default - El usuario ya existe
+[2023-03-26T16:51:55.265] [ERROR] default - El usuario ya existe
+[2023-03-26T16:55:57.564] [ERROR] default - Cannot read properties of undefined (reading 'products')
+[2023-03-26T16:58:02.421] [ERROR] default - Cannot read properties of undefined (reading 'products')
+[2023-03-26T17:02:26.458] [ERROR] default - product not found
+[2023-03-26T17:05:34.748] [ERROR] default - product not found
+[2023-03-26T17:06:17.613] [ERROR] default - product not found
+[2023-03-26T17:06:36.275] [ERROR] default - product not found
+[2023-03-26T17:06:51.967] [ERROR] default - product not found
+[2023-03-26T17:11:01.418] [ERROR] default - cart not found
+[2023-03-26T17:11:51.185] [ERROR] default - product not found
+[2023-03-26T17:12:02.001] [ERROR] default - Internal Server Error
+[2023-03-26T17:13:25.576] [ERROR] default - Internal Server Error
+[2023-03-26T17:16:01.268] [ERROR] default - Internal Server Error
+[2023-03-26T17:17:40.059] [ERROR] default - Internal Server Error
+[2023-03-26T17:18:34.083] [ERROR] default - Internal Server Error
+[2023-03-26T17:20:08.465] [ERROR] default - product not found
+[2023-03-26T17:21:58.516] [ERROR] default - product not found
+[2023-03-26T17:22:20.971] [ERROR] default - product not found
+[2023-03-26T17:24:01.452] [ERROR] default - Cannot read properties of undefined (reading 'products')

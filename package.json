@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"description": "",
 	"main": "server.js",
-    "type": "module",
+	"type": "module",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/JosineiGrau/BackEnd-32150.git"
@@ -45,6 +45,7 @@
 		"minimist": "^1.2.7",
 		"moment": "2.29.4",
 		"mongoose": "^6.7.2",
+		"nodemailer": "^6.9.1",
 		"nodemon": "2.0.20",
 		"passport": "^0.6.0",
 		"passport-local": "^1.0.0"

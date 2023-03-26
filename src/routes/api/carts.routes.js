@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import {
 	addProductToCartController,
+	buyProductsToCartController,
 	deleteCartController,
 	deleteProductToCartController,
 	getCartController,
@@ -24,5 +25,8 @@ cartsRoute.post('/:cartId/product/:productId', checkSession, cartIdValidate, ver
 // DELETE
 cartsRoute.delete('/:cartId', checkSession, cartIdValidate, verifyUserRol, deleteCartController);
 cartsRoute.delete('/:cartId/product/:productId', checkSession, cartIdValidate, verifyUserRol, deleteProductToCartController);
+
+
+cartsRoute.post('/buy/:cartId', checkSession, cartIdValidate, buyProductsToCartController);
 
 export { cartsRoute };

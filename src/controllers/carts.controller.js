@@ -1,3 +1,4 @@
+import { emailTemplateCheckout, mailOptions, transporter } from '../config/nodemailer.js';
 import success from '../networks/responses.js';
 import {
 	deleteCartById,
@@ -55,6 +56,22 @@ export const addProductToCartController = async (req, res, next) => {
 		next(err);
 	}
 };
+
+export const buyProductsToCartController = async (req, res, next) => {
+	try {
+		const { name, email } = req.user
+		const { cartId } = req.params;
+		const cartById = await getCartById(cartId);
+
+		await transporter.sendMail(mailOptions(emailTemplateCheckout(cartById.products), `Nuevo pedido de ${name}, ${email}`))
+
+		success(res, 202, 'Compra realizada')
+
+	} catch (err) {
+		next(err)
+	}
+};
+
 
 export const deleteProductToCartController = async (req, res, next) => {
 	try {

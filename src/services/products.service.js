@@ -12,7 +12,7 @@ export const saveProduct = async (product) => {
 
 export const getProductById = async (id) => {
     const productId = await ProductsDaoContainer.getById(id);
-	if (!productId || productId.length === 0)
+	if (!productId)
 		throw error('product not found', 404);
 	return convertToProductDto(productId);
 };

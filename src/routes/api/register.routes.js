@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { emailTemplateRegister, mailOptions, transporter } from '../../config/nodemailer.js';
 import passport from '../../helpers/localStrategy.js';
 import { verifyLogin } from '../../middleware/auth.js';
 import success from '../../networks/responses.js';
@@ -21,6 +22,7 @@ registerRouter.post(
 		failureMessage: true,
 	}),
 	async (req, res) => {
+        await transporter.sendMail(mailOptions(emailTemplateRegister(req.body), 'Nuevo registro'))
 		success(res, 201, 'Usuario registrado');
 	}
 );

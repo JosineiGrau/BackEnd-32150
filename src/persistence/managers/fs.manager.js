@@ -63,8 +63,8 @@ export class FsStore {
 		try {
 			const contenido = await fs.promises.readFile(this.nameFile, 'utf-8');
 			const data = JSON.parse(contenido);
-			const productId = data.find((item) => item._id === parseInt(id));
-			return productId;
+			const dataById = data.find((item) => item._id === parseInt(id));
+			return dataById;
 		} catch (err) {
 			throw error('Internal Server Error', 500);
 		}
@@ -73,9 +73,8 @@ export class FsStore {
 	async getAll() {
 		try {
 			const contenido = await fs.promises.readFile(this.nameFile, 'utf-8');
-			console.log(contenido);
-			const data = JSON.parse(contenido);
-			return data;
+			const datas = JSON.parse(contenido);
+			return datas;
 		} catch (err) {
 			throw error('Internal Server Error', 500);
 		}
@@ -85,12 +84,11 @@ export class FsStore {
 		try {
 			const contenido = await fs.promises.readFile(this.nameFile, 'utf-8');
 			const data = JSON.parse(contenido);
-			const newProductList = data.filter((item) => item._id !== parseInt(id));
+			const newDataList = data.filter((item) => item._id !== parseInt(id));
 			await fs.promises.writeFile(
 				this.nameFile,
-				JSON.stringify(newProductList, null, 2)
+				JSON.stringify(newDataList, null, 2)
 			);
-			return data.find((item) => item._id === parseInt(id));
 		} catch (err) {
 			throw error('Internal Server Error', 500);
 		}

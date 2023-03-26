@@ -21,24 +21,24 @@ export class CartsMongoDao extends MongoStore {
 		}
 	}
 
-    async addProductToCart(cartID, product) {
+    async addProductToCart(cartId, product) {
 		try {
-			const cart = await this.getById(cartID);
-            if (cart[0].products.some((item) => item._id.toString() === product[0]._id.toString())) {
-                const {products} = cart[0]
+            const cart = await this.getById(cartId)
+            if (cart.products.some((item) => item._id.toString() === product._id.toString())) {
+                const { products } = cart
                 const cartUpdate = products.map((prod) => {
-                    if (prod._id.toString() === product[0]._id.toString()) {
-                        const productUpdate = {...prod, stock: prod.stock + product[0].stock};
+                    if (prod._id.toString() === product._id.toString()) {
+                        const productUpdate = {...prod, stock: prod.stock + product.stock};
                         return {...productUpdate._doc, stock: productUpdate.stock};
                     } else {
                         return prod;
                     }
                 });
-                cart[0].products = cartUpdate
+                cart.products = cartUpdate
             } else {
-                cart[0].products.push(product[0])
+                cart.products.push(product)
             }
-            cart[0].save();
+            cart.save();
 			return cart;
 		} catch (err) {
             console.log(err)
@@ -48,10 +48,10 @@ export class CartsMongoDao extends MongoStore {
 
 	async deleteProductToCart(cart, product) {
 		try {
-            const { _id: cartId } = cart[0]
-            const { _id: productId } = product[0]
+            const { _id: cartId } = cart
+            const { _id: productId } = product
 
-            if (cart[0].products.some((item) => item._id.toString() === product[0]._id.toString())) {
+            if (cart.products.some((item) => item._id.toString() === product._id.toString())) {
                 await this.collectionModel.updateOne(
                     { _id: cartId },
                     { $pull: { products: { _id: { $eq: productId } } } },

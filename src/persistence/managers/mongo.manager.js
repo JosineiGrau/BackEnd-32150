@@ -7,7 +7,6 @@ export class MongoStore {
 
 	async save(item) {
 		try {
-			console.log(item);
 			const result = await this.collectionModel.create(item);
 			return result;
 		} catch (err) {
@@ -28,7 +27,7 @@ export class MongoStore {
 	async getById(id) {
 		try {
 			const result = await this.collectionModel.find({ _id: id });
-			return result;
+			return result[0];
 		} catch (err) {
 			throw error('Internal Server Error', 500);
 		}

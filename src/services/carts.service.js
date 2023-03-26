@@ -13,7 +13,7 @@ export const getAllCarts = async () => {
 
 export const getCartById = async (id) => {
 	const cartById = await CartsDaoContainer.getById(id);
-    if (!cartById || cartById.length === 0)
+    if (!cartById)
 		throw error('cart not found', 404);
      return convertToCartDto(cartById);
 };
@@ -31,7 +31,6 @@ export const deleteCartById = async (id) => {
 export const addProductToCart = async (cartId, productId) => {
     await getCartById(cartId)
     const productById = await getProductById(productId)
-
 	const newProduct = await CartsDaoContainer.addProductToCart(cartId, productById);
     console.log(newProduct)
 	return convertToCartDto(newProduct);
