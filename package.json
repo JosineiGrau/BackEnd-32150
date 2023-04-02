@@ -13,11 +13,10 @@
 	},
 	"homepage": "https://github.com/JosineiGrau/BackEnd-32150#readme",
 	"scripts": {
-		"dev": "nodemon src/server.js",
+		"dev": "cross-env NODE_ENV=dev nodemon src/server.js",
 		"start": "node src/server.js",
 		"start-mongo": "node src/server.js --db MONGO",
 		"start-fs": "node src/server.js --db FS",
-		"test": "mocha src/test/products.test.js",
 		"start-fork": "node src/server.js -m fork",
 		"start-cluster": "node src/server.js -m cluster",
 		"format": "npx prettier --write .",
@@ -52,6 +51,7 @@
 	},
 	"devDependencies": {
 		"chai": "^4.3.7",
+		"cross-env": "^7.0.3",
 		"eslint": "8.23.1",
 		"eslint-config-prettier": "8.5.0",
 		"eslint-config-standard": "17.0.0",
