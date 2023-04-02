@@ -1,24 +1,30 @@
-const { Router } = require('express')
-const passport = require('../../helpers/localStrategy')
-const { transporter, emailTemplateRegister, mailOptions } = require('../../config/nodemailer.config')
-const { verifyLogin } = require('../../middleware/auth')
-const success = require('../../networks/responses')
-const error = require('../../utils/setError')
-const { validationRegisterUser } = require('../../utils/userValidate')
-const registerRouter = Router()
+import { Router } from 'express';
+import { emailTemplateRegister, mailOptions, transporter } from '../../config/nodemailer.js';
+import passport from '../../helpers/localStrategy.js';
+import { verifyLogin } from '../../middleware/auth.js';
+import success from '../../networks/responses.js';
+import error from '../../utils/setError.js';
+import { validationRegisterUser } from '../../utils/userValidate.utility.js';
 
-registerRouter.get("/error", (req, res, next) => {
-    const message = req.session.messages.pop()
-    throw error(message, 404)
-})
+const registerRouter = Router();
 
-registerRouter.post("/",  verifyLogin, validationRegisterUser, passport.authenticate("signupStrategy",{
-    failureRedirect: '/register/error',
-    failureMessage: true
-}), async (req, res) => {
-    const response = await transporter.sendMail(mailOptions(emailTemplateRegister(req.body), 'Nuevo registro'))
-    success(res, 201, 'Usuario registrado', JSON.stringify(response))
-})
+registerRouter.get('/error', (req, res, next) => {
+	const message = req.session.messages.pop();
+	throw error(message, 404);
+});
 
+registerRouter.post(
+	'/',
+	verifyLogin,
+	validationRegisterUser,
+	passport.authenticate('signupStrategy', {
+		failureRedirect: '/register/error',
+		failureMessage: true,
+	}),
+	async (req, res) => {
+        await transporter.sendMail(mailOptions(emailTemplateRegister(req.body), 'Nuevo registro'))
+		success(res, 201, 'Usuario registrado');
+	}
+);
 
-module.exports = registerRouter
+export { registerRouter };

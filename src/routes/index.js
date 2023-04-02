@@ -1,38 +1,30 @@
-const { Router } = require('express')
-const homeRoute = require('./api/home.routes')
-const infoRoute = require('./api/info.routes')
-const loginRoute = require('./api/login.routes')
-const registerRouter = require('./api/register.routes')
-const logoutRoute = require('./api/logout.routes')
-const productsRoute = require('./api/products.routes')
-const randomsRoute = require('./api/randoms.routes')
-const cartsRoute = require('./api/carts.routes')
-const { logger } = require('../config/logger.config')
+import { Router } from 'express';
+import { logger } from '../config/loggerConfig.js';
+import { cartsRoute } from './api/carts.routes.js';
+import { loginRoute } from './api/login.routes.js';
+import { logoutRoute } from './api/logout.routes.js';
+import { productsRoute } from './api/products.routes.js';
+import { registerRouter } from './api/register.routes.js';
 
-const router = Router()
+const router = Router();
 
-const apiRouter = (app) => {
-  app.use('/', router)
-  router.use('/productos', productsRoute)
-  router.use('/login', loginRoute)
-  router.use('/register', registerRouter)
-  router.use('/logout', logoutRoute)
-  router.use('/home', homeRoute)
-  router.use('/info', infoRoute)
-  router.use('/randoms', randomsRoute)
-  router.use('/carritos', cartsRoute)
+export const apiRouter = (app) => {
+	app.use('/', router);
+	router.use('/products', productsRoute);
+	router.use('/carts', cartsRoute);
+	router.use('/login', loginRoute);
+	router.use('/register', registerRouter);
+	router.use('/logout', logoutRoute);
 
-  app.use('*', async (req, res, next) => {
-    res.status(400).json({
-      error: -2,
-      description: {
-        route: req.baseUrl,
-        method: req.method,
-        msg: 'not implemented'
-      }
-    })
-    logger.warn(`${req.baseUrl} not found`)
-  })
-}
-
-module.exports.apiRouter = apiRouter
+	app.use('*', async (req, res, next) => {
+		res.status(400).json({
+			error: -2,
+			description: {
+				route: req.baseUrl,
+				method: req.method,
+				msg: 'not implemented',
+			},
+		});
+		logger.warn(`${req.baseUrl} not found`);
+	});
+};

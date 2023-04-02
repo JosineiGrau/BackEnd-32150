@@ -33,7 +33,6 @@ Start the server
   npm run start
 ```
 
-
 ## API Reference
 
 ### AUTH
@@ -82,7 +81,11 @@ Start the server
 #### Get product
 
 ```http
+<<<<<<< HEAD
   GET /productos/${productID}
+=======
+  GET /productos/${id}
+>>>>>>> ProyectoFinal
 ```
 
 | Parameter | Type     | Description                       |
@@ -107,7 +110,11 @@ Start the server
 #### Put product
 
 ```http
+<<<<<<< HEAD
   PUT /productos/${productID}
+=======
+  PUT /productos/${id}
+>>>>>>> ProyectoFinal
 ```
 
 | Parameter | Type     | Description                       |
@@ -118,7 +125,11 @@ Start the server
 #### Delete product
 
 ```http
+<<<<<<< HEAD
   DELETE /productos/${productID}
+=======
+  DELETE /productos/${id}
+>>>>>>> ProyectoFinal
 ```
 
 | Parameter | Type     | Description                       |
@@ -131,7 +142,11 @@ Start the server
 ### Get all carts
 
 ```http
+<<<<<<< HEAD
   GET /carritos
+=======
+  GET /chats
+>>>>>>> ProyectoFinal
 ```
 
 #### Get cart
@@ -147,7 +162,11 @@ Start the server
 #### Post cart
 
 ```http
+<<<<<<< HEAD
   POST /carritos
+=======
+  POST /chats
+>>>>>>> ProyectoFinal
 ```
 
 #### Post product to cart
@@ -162,10 +181,26 @@ Start the server
 | `body = id`      | `number` | **Required**. ProductID of the product |
 
 
+<<<<<<< HEAD
 #### Delete cart
 
 ```http
   DELETE /carritos/${cartID}
+=======
+### USERS
+
+### Get all users
+```http
+  GET /users
+```
+
+### VIEWS
+
+### HOME
+
+```http
+  GET /home
+>>>>>>> ProyectoFinal
 ```
 
 | Parameter | Type     | Description                       |
@@ -176,7 +211,11 @@ Start the server
 #### Delete product to cart
 
 ```http
+<<<<<<< HEAD
   DELETE /carritos/${cartID}/productos/${productId}
+=======
+  GET /login
+>>>>>>> ProyectoFinal
 ```
 
 | Parameter | Type     | Description                       |
@@ -187,9 +226,65 @@ Start the server
 #### Buy Items
 
 ```http
+<<<<<<< HEAD
   POST /carritos/buy/${cartID}
 ```
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `number` | **Required**. cartID of cart |
+=======
+  GET /login/error
+```
+
+### REGISTER
+
+```http
+  GET /register
+```
+
+### REGISTER ERROR
+
+```http
+  GET /register/error
+```
+
+### LOGOUT
+
+```http
+  GET /logout
+```
+
+### PRODUCTS
+
+```http
+  GET /productos/view
+```
+
+### CHATS
+
+```http
+  GET /chats/view
+```
+
+### INFO
+
+```http
+  GET /info
+```
+
+# HTML
+```http
+  GET /info/view
+```
+
+### NUMBERS RANDOMS
+
+```http
+  GET /randoms
+```
+
+```http
+  GET /randoms/no-bloqueante
+```
+>>>>>>> ProyectoFinal

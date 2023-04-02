@@ -8,4 +8,4 @@ const error = (message, code) => {
     return e
 }
 
-module.exports = error
+export default error

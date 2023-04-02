@@ -3,6 +3,7 @@
 	"version": "1.0.0",
 	"description": "",
 	"main": "server.js",
+	"type": "module",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/JosineiGrau/BackEnd-32150.git"
@@ -12,8 +13,10 @@
 	},
 	"homepage": "https://github.com/JosineiGrau/BackEnd-32150#readme",
 	"scripts": {
-		"dev": "nodemon src/server.js",
+		"dev": "cross-env NODE_ENV=dev nodemon src/server.js",
 		"start": "node src/server.js",
+		"start-mongo": "node src/server.js --db MONGO",
+		"start-fs": "node src/server.js --db FS",
 		"start-fork": "node src/server.js -m fork",
 		"start-cluster": "node src/server.js -m cluster",
 		"format": "npx prettier --write .",
@@ -31,11 +34,9 @@
 	"license": "ISC",
 	"dependencies": {
 		"bcrypt": "^5.1.0",
-		"compression": "^1.7.4",
 		"connect-mongo": "^4.6.0",
 		"cookie-parser": "^1.4.6",
 		"dotenv": "16.0.3",
-		"ejs": "3.1.8",
 		"express": "4.18.1",
 		"express-session": "^1.17.3",
 		"express-validator": "^6.14.2",
@@ -46,18 +47,19 @@
 		"mongoose": "^6.7.2",
 		"nodemailer": "^6.9.1",
 		"nodemon": "2.0.20",
-		"normalizr": "^3.6.2",
 		"passport": "^0.6.0",
-		"passport-local": "^1.0.0",
-		"socket.io": "4.5.3",
-		"twilio": "^3.84.1"
+		"passport-local": "^1.0.0"
 	},
 	"devDependencies": {
+		"chai": "^4.3.7",
+		"cross-env": "^7.0.3",
 		"eslint": "8.23.1",
 		"eslint-config-prettier": "8.5.0",
 		"eslint-config-standard": "17.0.0",
 		"eslint-plugin-import": "2.26.0",
 		"eslint-plugin-n": "15.2.5",
-		"eslint-plugin-promise": "6.0.1"
+		"eslint-plugin-promise": "6.0.1",
+		"mocha": "^10.2.0",
+		"supertest": "^6.3.3"
 	}
 }

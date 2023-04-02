@@ -1,18 +1,15 @@
-const { createTransport } = require('nodemailer');
-const dotenv = require('dotenv');
+import { createTransport } from 'nodemailer';
+import config from './config.js';
 
-dotenv.config()
-
-const TEST_EMAIL = process.env.DB_TEST_EMAIL
-const TEST_PASSWORD = process.env.DB_TEST_PASSWORD
+const { nodeMailer } = config
 
 
 const transporter = createTransport({
     host: 'smtp.gmail.com',
     port: 587,
     auth: {
-        user: TEST_EMAIL,
-        pass: TEST_PASSWORD,
+        user: nodeMailer.email,
+        pass: nodeMailer.password,
     },
     secure: false,
     tls: {
@@ -37,9 +34,9 @@ const emailTemplateRegister = (user) => {
     `
 }
 
-const emailTemplateCheckout = (product) => {
+const emailTemplateCheckout = (products) => {
     let template;
-    product.forEach((item) => {
+    products.forEach((item) => {
         const { name, price, image } = item
         template += `
         <div style= "   position: relative;
@@ -79,10 +76,10 @@ const emailTemplateCheckout = (product) => {
 const mailOptions = (template, asunto) => {
     return {
         from: 'Servidor de NodeJs',
-        to: TEST_EMAIL,
+        to: nodeMailer.email,
         subject: asunto,
         html: template
     }
 }
 
-module.exports = { transporter, mailOptions, emailTemplateRegister, emailTemplateCheckout }
+export { transporter, mailOptions, emailTemplateRegister, emailTemplateCheckout }

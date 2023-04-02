@@ -1,6 +1,6 @@
-const { Router } = require('express')
-const { checkSession } = require('../../middleware/auth');
-const success = require('../../networks/responses');
+import { Router } from 'express'
+import { checkSession } from '../../middleware/auth.js'
+import success from '../../networks/responses.js'
 
 const logoutRoute = Router()
 
@@ -11,7 +11,6 @@ logoutRoute.get('/', checkSession,(req, res, next) => {
       req.session.destroy()
       success(res, 200, `Hasta luego ${name} nos vemos pronto`)
    });
-  
-})
 
-module.exports = logoutRoute
+})
+export {logoutRoute}

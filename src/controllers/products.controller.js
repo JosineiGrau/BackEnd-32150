@@ -1,69 +1,62 @@
-const success = require("../networks/responses");
-const Products = require('../services/daos/products/productsMongo.daos');
+import success from '../networks/responses.js';
+import {
+	saveProduct,
+	deleteProductById,
+	getAllProducts,
+	getProductById,
+	updateProduct,
+} from '../services/products.service.js';
 
-const db = new Products()
-
-const getProductsController = async (req, res, next) => {
-    try {
-		const allProducts = await db.getAll();
-		success(res,200,'Estos son todos los productos',allProducts)
+export const getProductsController = async (req, res, next) => {
+	try {
+		const allProducts = await getAllProducts();
+		success(res, 200, 'Estos son todos los productos', allProducts);
 	} catch (err) {
-		next(err)
+		next(err);
 	}
-}
+};
 
-const getProductController = async (req, res, next) => {
-    try {
+export const getProductController = async (req, res, next) => {
+	try {
 		const { productId } = req.params;
-		const productById = await db.getById(productId);
-		success(res,200,'El producto Obtenido',productById)
+		const productById = await getProductById(productId);
 
+		success(res, 200, 'El producto Obtenido', productById);
+	} catch (err) {
+		next(err);
 	}
-	catch(err) {
-		next(err)
-	}
-}
+};
 
-const postProductController = async (req, res, next) => {
-    try {
+export const postProductController = async (req, res, next) => {
+	try {
 		const newProduct = req.body;
-		const getProducts = await db.save(newProduct);
-		success(res,201,'Producto Agregado',getProducts)
-	} catch (err) {
-		next(err)
-	}
-}
+		const getProducts = await saveProduct(newProduct);
 
-const deleteProductController = async (req, res, next) => {
-    try {
+		success(res, 201, 'Producto Agregado', getProducts);
+	} catch (err) {
+		next(err);
+	}
+};
+
+export const deleteProductController = async (req, res, next) => {
+	try {
 		const { productId } = req.params;
-		const deleteProduct = await db.deleteById(productId);
-		success(res,200,'Producto eliminado exitosamente',deleteProduct )	
+		await deleteProductById(productId);
 
+		success(res, 200, 'Producto eliminado exitosamente');
 	} catch (err) {
-		next(err)
+		next(err);
 	}
-}
+};
 
-const putProductController = async (req, res, next) => {
-    try {
+export const putProductController = async (req, res, next) => {
+	try {
 		const { productId } = req.params;
-		const updateProduct = req.body;
-		const updatedProduct = await db.update(
-			productId,
-			updateProduct
-		);
-		success(res,200,'Producto actualizado',updatedProduct)
+		const dataProduct = req.body;
+		const updatedProduct = await updateProduct(productId, dataProduct);
+
+		success(res, 202, 'Producto actualizado', updatedProduct);
 	} catch (err) {
-		next(err)
+		next(err);
 	}
-}
-
-
-module.exports = {
-    getProductsController,
-    getProductController,
-    postProductController,
-    deleteProductController,
-    putProductController
-}
+};

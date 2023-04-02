@@ -1,10 +1,29 @@
-const dotenv = require('dotenv');
-dotenv.config()
+import dotenv from 'dotenv';
+import args from '../utils/parseArgs.js';
+console.log(args);
+dotenv.config();
 
-const config = {
-    admin : true,
-    JWT_KEY: process.env.JWT_SECRET,
-    dataBase: 'Mongo'
+const env = process.env.NODE_ENV
+
+let dataBase = process.env.DB_TYPE
+
+if (env === 'dev') {
+    dataBase = 'FS'
 }
 
-module.exports = config
+const config = {
+	server: {
+		PORT: process.env.PORT || args.port,
+		mode: process.env.DB_MODE || args.mode,
+		dbType: dataBase || args.dataBase,
+	},
+	mongoDB: {
+		mongoUrl: process.env.DB_MONGO_URL,
+	},
+    nodeMailer: {
+        email: process.env.TEST_EMAIL,
+        password: process.env.TEST_PASSWORD,
+    }
+};
+
+export default config;

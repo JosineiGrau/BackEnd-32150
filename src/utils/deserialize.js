@@ -1,6 +1,5 @@
-const passport = require('../helpers/localStrategy');
-
-const UserModel = require('../persistence/models/users.model');
+import passport from '../helpers/localStrategy.js'
+import { UserModel } from '../persistence/models/users.js';
 
 const deserialize = () => {
     passport.deserializeUser((id, done) => {
@@ -12,4 +11,4 @@ const deserialize = () => {
     })
 }
 
-module.exports = deserialize
+export default deserialize

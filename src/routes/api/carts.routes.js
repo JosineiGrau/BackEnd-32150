@@ -1,26 +1,32 @@
-const { Router } = require('express');
-const { deleteProduct, getProduct } = require('../../utils/productValidate');
-const { checkSession } = require('../../middleware/auth');
-const { getCartsController, getCartController, postCartController, postAddProductToCartController, postBuyItemsController, deleteCartController, deleteProductToCartController } = require('../../controllers/carts.controller');
+import { Router } from 'express';
+import {
+	addProductToCartController,
+	buyProductsToCartController,
+	deleteCartController,
+	deleteProductToCartController,
+	getCartController,
+	getCartsController,
+	postCartController,
+} from '../../controllers/carts.controller.js';
+import { checkSession, verifyUserRol } from '../../middleware/auth.js';
+import { cartIdValidate } from '../../utils/cartValidate.utility.js';
 
-
-const cartsRoute = Router(); 
+const cartsRoute = Router();
 
 // GET
 cartsRoute.get('/', checkSession, getCartsController);
 
-cartsRoute.get('/:cartId', checkSession, getProduct , getCartController);
+cartsRoute.get('/:cartId', checkSession, cartIdValidate, getCartController);
 
 // POST
-cartsRoute.post('/', checkSession , postCartController);
-
-cartsRoute.post('/:cartId', checkSession, postAddProductToCartController);
-
-cartsRoute.post('/buy/:cartId', checkSession, postBuyItemsController);
+cartsRoute.post('/', checkSession, verifyUserRol, postCartController);
+cartsRoute.post('/:cartId/product/:productId', checkSession, cartIdValidate, verifyUserRol, addProductToCartController);
 
 // DELETE
-cartsRoute.delete('/:cartId', checkSession, deleteProduct, deleteCartController);
+cartsRoute.delete('/:cartId', checkSession, cartIdValidate, verifyUserRol, deleteCartController);
+cartsRoute.delete('/:cartId/product/:productId', checkSession, cartIdValidate, verifyUserRol, deleteProductToCartController);
 
-cartsRoute.delete('/:cartId/productos/:productId', checkSession, deleteProduct, deleteProductToCartController);
 
-module.exports = cartsRoute
+cartsRoute.post('/buy/:cartId', checkSession, cartIdValidate, buyProductsToCartController);
+
+export { cartsRoute };

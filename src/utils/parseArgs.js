@@ -1,7 +1,13 @@
-const parseArgs = require('minimist');
-const options = { alias: {m: 'mode', p: 'puerto', d: 'desarrollo'}, default: {m: 'fork'} }
+import parseArgs from 'minimist';
 
-const args = parseArgs(process.argv.slice(2), options)
-console.log(args)
+const options = {
+	alias: { m: 'mode', p: 'port', db: 'dataBase' },
+};
 
-module.exports = args
+const { mode, port, dataBase } = parseArgs(process.argv.slice(2), options);
+
+export default {
+	mode,
+	port,
+	dataBase,
+};

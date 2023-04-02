@@ -1,22 +1,56 @@
-const { Router } = require('express');
-const { deleteProduct, getProduct, updateProduct, validationCreate } = require('../../utils/productValidate');
-const { checkSession, checkRol } = require('../../middleware/auth');
-const { getProductController, getProductsController, postProductController, deleteProductController, putProductController } = require('../../controllers/products.controller');
+import { Router } from 'express';
+import {
+	getProductController,
+	deleteProductController,
+	getProductsController,
+	postProductController,
+	putProductController,
+} from '../../controllers/products.controller.js';
+import { checkSession, verifyUserRol } from '../../middleware/auth.js';
+import {
+	createProduct,
+	productIdValidate,
+	updateProduct,
+} from '../../utils/productValidate.utility.js';
 
-
-const productsRoute = Router(); 
+const productsRoute = Router();
 
 // GET
 productsRoute.get('/', checkSession, getProductsController);
 
-productsRoute.get('/:productId', checkSession, getProduct, getProductController);
+productsRoute.get(
+	'/:productId',
+	checkSession,
+	productIdValidate,
+	getProductController
+);
 
-productsRoute.post('/', checkRol, checkSession, validationCreate, postProductController)
+// POST
+productsRoute.post(
+	'/',
+	checkSession,
+	verifyUserRol,
+	createProduct,
+	postProductController
+);
 
 // DELETE
-productsRoute.delete('/:productId', deleteProduct, checkRol, checkSession, deleteProductController);
+productsRoute.delete(
+	'/:productId',
+	checkSession,
+	verifyUserRol,
+	productIdValidate,
+	deleteProductController
+);
 
 // PUT
-productsRoute.put('/:productId', checkRol, checkSession, updateProduct , putProductController);
+productsRoute.put(
+	'/:productId',
+	checkSession,
+	verifyUserRol,
+	productIdValidate,
+	updateProduct,
+	putProductController
+);
 
-module.exports = productsRoute;
+export { productsRoute };

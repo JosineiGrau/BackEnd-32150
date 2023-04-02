@@ -1,0 +1,31 @@
+[
+  {
+    "_id": 1,
+    "timestamp": "23/03/2023 20:39:54 PM",
+    "products": [
+      {
+        "_id": 2,
+        "name": "APPLE WATCH SERIES 3 38MM SPACE GREY",
+        "code": 489533,
+        "price": 1500,
+        "description": "Este mágico dispositivo te permite hacer todo desde tu muñeca: recibir llamadas, enviar mensajes de texto o escuchar tus mensajes de voz. También podrás hablar con tus contactos por Walkie-Talkie y escuchar tu música favorita.",
+        "image": "https://home.ripley.com.pe/Attachment/WOP_5/2065233144486/2065233144486_2.jpg",
+        "stock": 40
+      }
+    ]
+  },
+  {
+    "_id": 2,
+    "products": [
+      {
+        "_id": 2,
+        "name": "APPLE WATCH SERIES 3 38MM SPACE GREY",
+        "code": 489533,
+        "price": 1500,
+        "description": "Este mágico dispositivo te permite hacer todo desde tu muñeca: recibir llamadas, enviar mensajes de texto o escuchar tus mensajes de voz. También podrás hablar con tus contactos por Walkie-Talkie y escuchar tu música favorita.",
+        "image": "https://home.ripley.com.pe/Attachment/WOP_5/2065233144486/2065233144486_2.jpg",
+        "stock": 10
+      }
+    ]
+  }
+]

@@ -1,52 +1,32 @@
-const config = require('../config/config')
-// const { validateSignature } = require('../utils/auth')
-const error = require('../utils/setError')
+export const checkSession = (req, res, next) => {
+	if (!req.isAuthenticated()) {
+		res.status(401).json({
+			error: true,
+			msg: 'Debe iniciar sesión para continuar',
+		});
+	} else {
+		next();
+	}
+};
 
-const checkRol = (req, res, next) => {
-    if (config.admin === true) {
-        next()
-    } else{
-        throw error('No autorizado',401)
-    }
-}
+export const verifyLogin = (req, res, next) => {
+	if (req.isAuthenticated()) {
+		res.status(200).json({
+			error: false,
+			msg: 'Usted ya se encuentra logueado',
+		});
+	} else {
+		next();
+	}
+};
 
-const checkSession = (req,res,next) => {
-    if(!req.isAuthenticated()) {
-        res.status(401).json({
-            error: true,
-            msg: 'Debe iniciar sesión para continuar'
-        })
-    } else {
-        next()
-    }
-}
-
-const verifyLogin = (req, res, next) => {
-    if(req.isAuthenticated()) {
-        res.status(401).json({
-            error: false,
-            msg: 'Usted ya se encuentra logeado'
-        })
-    } else {
-        next()
-    }
-}
-
-// const authenticate = (req, res, next) => {
-//     const isJsonWenToken = validateSignature(req)
-//     if (isJsonWenToken instanceof Object) {
-//         next()
-//     } else if (isJsonWenToken) {
-//         res.status(500).send('Token expired')
-//     } else {
-//         res.status(500).send('Token invalid')
-//     }
-// }
-
-
-module.exports = {
-   checkSession,
-   checkRol,
-//    authenticate,
-   verifyLogin
-}
+export const verifyUserRol = (req, res, next) => {
+	if (req.user.rol === 'user') {
+		res.status(400).json({
+			error: true,
+			msg: 'Usted no puede hacer estas acciones por que no es el administrador',
+		});
+	} else {
+		next();
+	}
+};
