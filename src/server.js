@@ -21,11 +21,9 @@ const app = express();
 // SETTINGS
 app.set('case sensitive routing', true);
 app.set('view engine', 'ejs');
-// app.set('views', path.join(__dirname, 'views'));
 // MIDDLEWARE
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use(express.static(path.join(__dirname, '/public')));
 app.use(cookieParser());
 app.use(StoreSession);
 app.use(passport.initialize()); // conectamos a passport con express
