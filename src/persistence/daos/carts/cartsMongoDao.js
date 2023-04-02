@@ -41,7 +41,6 @@ export class CartsMongoDao extends MongoStore {
             cart.save();
 			return cart;
 		} catch (err) {
-            console.log(err)
 			throw error('Internal Server Error', 500);
 		}
 	}

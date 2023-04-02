@@ -32,7 +32,6 @@ export const addProductToCart = async (cartId, productId) => {
     await getCartById(cartId)
     const productById = await getProductById(productId)
 	const newProduct = await CartsDaoContainer.addProductToCart(cartId, productById);
-    console.log(newProduct)
 	return convertToCartDto(newProduct);
 };
 

@@ -49,7 +49,6 @@ passport.use(
 					photo: req.body.photo,
 					rol: req.body.rol,
 				};
-				console.log(newUser);
 				UserModel.create(newUser, (err, userCreate) => {
 					if (err)
 						return done(err, null, {

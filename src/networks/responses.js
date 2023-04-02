@@ -11,7 +11,7 @@ const success = (res, status, msg, data) => {
       message: statusMessage,
       data: body
     })
-    // logger.info(body)
+    logger.info(body)
 }
 
 export default success

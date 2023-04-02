@@ -5,9 +5,8 @@ import dotenv from 'dotenv';
 dotenv.config()
 
 export const StoreSession = session({
-    store: MongoStore.create({ mongoUrl: process.env.DB_MONGO_url }),
-
+    store: MongoStore.create({ mongoUrl: process.env.DB_MONGO_URL }),
     secret: 'claveSecreta',
-    resave: true,
-    saveUninitialized: true,
+    resave: false,
+    saveUninitialized: false,
 })
