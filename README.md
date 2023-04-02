@@ -35,41 +35,6 @@ Start the server
 
 ## API Reference
 
-### AUTH
-
-#### Register
-
-```http
-  POST /register
-```
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `name`      | `string` | **Required**. Name user to save |
-| `email`      | `string` | **Required**. Email user to save |
-| `password`      | `string` | **Required**. Password user to save |
-| `direction`      | `string` | **Required**. Direction user to save |
-| `phone`      | `string` | **Required**. Phone user to save |
-| `age`      | `number` | **Required**. Age user to save |
-| `photo`      | `string` | **Required**.  Photo user to savee |
-
-
-#### Login
-
-```http
-  POST /login
-```
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `email`      | `string` | **Required**. Email user to save |
-| `password`      | `string` | **Required**. Password user to save |
-
-
-#### Logout
-
-```http
-  POST /logout
-```
-
 ### PRODUCTS
 
 #### Get all products
@@ -81,16 +46,12 @@ Start the server
 #### Get product
 
 ```http
-<<<<<<< HEAD
-  GET /productos/${productID}
-=======
   GET /productos/${id}
->>>>>>> ProyectoFinal
 ```
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `id`      | `number` | **Required**. productID of product to fetch |
+| `id`      | `number` | **Required**. Id of product to fetch |
 
 #### Post product
 
@@ -110,83 +71,43 @@ Start the server
 #### Put product
 
 ```http
-<<<<<<< HEAD
-  PUT /productos/${productID}
-=======
   PUT /productos/${id}
->>>>>>> ProyectoFinal
 ```
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `id`      | `number` | **Required**. productID of product to update |
+| `id`      | `number` | **Required**. Id of product to update |
 | `{data}`      |  | **Required**. Data for update product |
 
 #### Delete product
 
 ```http
-<<<<<<< HEAD
-  DELETE /productos/${productID}
-=======
   DELETE /productos/${id}
->>>>>>> ProyectoFinal
 ```
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `id`      | `number` | **Required**. productID of product to delete |
+| `id`      | `number` | **Required**. Id of product to delete |
 
 
-### CARTS
+### CHAT
 
-### Get all carts
+### Get all chats
 
 ```http
-<<<<<<< HEAD
-  GET /carritos
-=======
   GET /chats
->>>>>>> ProyectoFinal
 ```
-
-#### Get cart
-
-```http
-  GET /carritos/${cartID}
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `number` | **Required**. cartID of cart to fetch |
 
 #### Post cart
 
 ```http
-<<<<<<< HEAD
-  POST /carritos
-=======
   POST /chats
->>>>>>> ProyectoFinal
 ```
-
-#### Post product to cart
-
-```http
-  POST /carritos/${cartID}
-```
-
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `id`      | `number` | **Required**. Cart cartID to save the product |
-| `body = id`      | `number` | **Required**. ProductID of the product |
+| `message`      | `string` | **Required**. Message to send |
 
 
-<<<<<<< HEAD
-#### Delete cart
-
-```http
-  DELETE /carritos/${cartID}
-=======
 ### USERS
 
 ### Get all users
@@ -200,40 +121,17 @@ Start the server
 
 ```http
   GET /home
->>>>>>> ProyectoFinal
 ```
 
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `number` | **Required**. Id of cart to delete |
-
-
-#### Delete product to cart
+### LOGIN
 
 ```http
-<<<<<<< HEAD
-  DELETE /carritos/${cartID}/productos/${productId}
-=======
   GET /login
->>>>>>> ProyectoFinal
 ```
 
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `number` | **Required**. Id of cart |
-| `productId`      | `number` | **Required**. Id of product to delete |
-
-#### Buy Items
+### LOGIN ERROR
 
 ```http
-<<<<<<< HEAD
-  POST /carritos/buy/${cartID}
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `number` | **Required**. cartID of cart |
-=======
   GET /login/error
 ```
 
@@ -287,4 +185,3 @@ Start the server
 ```http
   GET /randoms/no-bloqueante
 ```
->>>>>>> ProyectoFinal

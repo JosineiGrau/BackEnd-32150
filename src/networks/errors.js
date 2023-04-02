@@ -7,7 +7,7 @@ const errors = (err, req, res, next) => {
   res.status(statusCode).json({
     error: true,
     status: statusCode,
-    msg: statusMessage
+    body: statusMessage
   })
   logger.error(statusMessage)
 }

@@ -17,6 +17,7 @@ dotenv.config();
 const numerosCPUs = os.cpus().length;
 
 const app = express();
+
 // SETTINGS
 app.set('case sensitive routing', true);
 app.set('view engine', 'ejs');
