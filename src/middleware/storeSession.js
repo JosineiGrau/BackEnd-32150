@@ -8,6 +8,6 @@ export const StoreSession = session({
     store: MongoStore.create({ mongoUrl: process.env.DB_MONGO_url }),
 
     secret: 'claveSecreta',
-    resave: false,
-    saveUninitialized: false,
+    resave: true,
+    saveUninitialized: true,
 })
