@@ -44,7 +44,7 @@ Start the server
   POST /login
 ```
 | Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- ||
+| :-------- | :------- | :-------------------------------- |
 | `email`      | `string` | **Required**. Email of user to fetch |
 | `password`      | `string` | **Required**. Password of user to fetch |
 
