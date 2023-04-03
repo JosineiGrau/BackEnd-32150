@@ -4,8 +4,8 @@
 
 This is a back-end project developed with:
 
-- [Node js](https://nodejs.org/en/)
-- [Express js](https://expressjs.com/es/)
+- [node js](https://nodejs.org/en)
+- [Express](https://expressjs.com/es/)
 
 ## Run Locally
 
@@ -35,119 +35,39 @@ Start the server
 
 ## API Reference
 
-### PRODUCTS
+### AUTH
 
-#### Get all products
-
-```http
-  GET /productos
-```
-
-#### Get product
+#### Login
 
 ```http
-  GET /productos/${id}
-```
 
+  POST /login
+```
 | Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `number` | **Required**. Id of product to fetch |
+| :-------- | :------- | :-------------------------------- ||
+| `email`      | `string` | **Required**. Email of user to fetch |
+| `password`      | `string` | **Required**. Password of user to fetch |
 
-#### Post product
 
-```http
-  POST /productos
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `name`      | `string` | **Required**. Name of product to save |
-| `description`      | `string` | **Required**. Description of product to save |
-| `code`      | `number` | **Required**. Code of product to save |
-| `image`      | `string` | **Required**. Image of product to save |
-| `price`      | `number` | **Required**. Price of product to save |
-| `stock`      | `number` | **Required**. Stock of product to save |
-
-#### Put product
+#### Register
 
 ```http
-  PUT /productos/${id}
-```
 
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `number` | **Required**. Id of product to update |
-| `{data}`      |  | **Required**. Data for update product |
-
-#### Delete product
-
-```http
-  DELETE /productos/${id}
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `number` | **Required**. Id of product to delete |
-
-
-### CHAT
-
-### Get all chats
-
-```http
-  GET /chats
-```
-
-#### Post cart
-
-```http
-  POST /chats
+  POST /register
 ```
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `message`      | `string` | **Required**. Message to send |
+| `name`      | `string` | **Required**. Name of user to save |
+| `email`      | `string` | **Required**. User email to save, must be unique |
+| `password`      | `string` | **Required**. Password of user to save |
+| `direction`      | `string` | **Required**. Direction of user to save |
+| `phone`      | `string` | **Required**. Phone of user to save |
+| `photo`      | `string` | **Required**. Photo of user to save |
+| `age`      | `number` | **Required**. Age of user to save |
+| `rol`      | `string` | **Required**. Rol of user to save |
 
 
-### USERS
-
-### Get all users
-```http
-  GET /users
-```
-
-### VIEWS
-
-### HOME
-
-```http
-  GET /home
-```
-
-### LOGIN
-
-```http
-  GET /login
-```
-
-### LOGIN ERROR
-
-```http
-  GET /login/error
-```
-
-### REGISTER
-
-```http
-  GET /register
-```
-
-### REGISTER ERROR
-
-```http
-  GET /register/error
-```
-
-### LOGOUT
+#### Logout
 
 ```http
   GET /logout
@@ -155,33 +75,129 @@ Start the server
 
 ### PRODUCTS
 
-```http
-  GET /productos/view
-```
-
-### CHATS
+#### All products
 
 ```http
-  GET /chats/view
+
+  GET /products
 ```
 
-### INFO
+#### Product
 
 ```http
-  GET /info
+  GET /products/${id}
 ```
 
-# HTML
-```http
-  GET /info/view
-```
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of product to fetch |
 
-### NUMBERS RANDOMS
-
-```http
-  GET /randoms
-```
+#### Save Product
 
 ```http
-  GET /randoms/no-bloqueante
+  POST /products
 ```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `name`      | `string` | **Required**. Name of product to save |
+| `code`      | `number` | **Required**. Code of product to save |
+| `price`      | `number` | **Required**. Price of product to save |
+| `description`      | `string` | **Required**. Description of product to save |
+| `image`      | `string` | **Required**. Image of product to save |
+| `stock`      | `number` | **Required**. Stock of product to save |
+
+#### Update product
+
+```http
+  PUT /products/${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of product to update |
+| `{data}`      |  | **Required**. Data for update product |
+
+#### Delete product
+
+```http
+  DELETE /products/${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of product to delete |
+
+
+### CARTS
+
+#### All carts
+
+```http
+
+  GET /carts
+```
+
+#### Cart
+
+```http
+  GET /carts/${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of cart to fetch |
+
+#### Save cart
+
+```http
+  POST /carts
+```
+
+#### Add product to cart
+
+```http
+  POST /carts/${cartID}/product/${productID}
+```
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `cartID`      | `string` | **Required**. id of cart to fetch |
+| `productID`      | `string` | **Required**. id of product to fetch |
+
+#### Buy
+
+```http
+  POST /carts/buy/${cartID}
+```
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `cartID`      | `string` | **Required**. Id of the cart to buy |
+
+
+
+#### Delete cart
+
+```http
+  DELETE /carts/${cartID}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `cartID`      | `string` | **Required**. Id of cart to delete |
+
+
+#### Delete product to cart
+
+```http
+  DELETE /carts/${cartID}/product/${productID}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `cartID`      | `string` | **Required**. Id of cart to fetch |
+| `productID`      | `string` | **Required**. Id of product to delete |
+
+
+
+
+
